@@ -3,14 +3,14 @@ import prisma from "../db/prisma.js";
 import cloudinary from "../config/cloudinary.js";
 
 export const getProducts = asyncHandler(async (req, res) => {
-  const qNew = req.query.new;
+  // const qisNew = req.query.new;
 
-  const { category } = req.query;
+  const { isNew,category } = req.query;
 
   try {
     let products;
 
-    if (qNew) {
+    if (isNew) {
       products = (await prisma.product.findMany()).sort((a, b) => {
         return new Date(b.createdAt) - new Date(a.createdAt);
       });

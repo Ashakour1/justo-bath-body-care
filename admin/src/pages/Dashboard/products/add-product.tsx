@@ -201,11 +201,10 @@ const ProductForm = () => {
                   <SelectValue placeholder="Select a category" />
                 </SelectTrigger>
                 <SelectContent className="w-full">
-                  <SelectItem value="clothing">Clothing</SelectItem>
-                  <SelectItem value="electronics">Electronics</SelectItem>
-                  <SelectItem value="home">Home & Kitchen</SelectItem>
-                  <SelectItem value="beauty">Beauty</SelectItem>
-                  <SelectItem value="sports">Sports</SelectItem>
+                  <SelectItem value="perfumes">perfumes</SelectItem>
+                  <SelectItem value="rituals">Rituals</SelectItem>
+                  <SelectItem value="Cosmetics">Cosmetics</SelectItem>
+                  <SelectItem value="bath-body">Bath and body works</SelectItem>
                 </SelectContent>
               </Select>
             </div>
