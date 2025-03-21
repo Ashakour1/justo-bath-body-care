@@ -37,33 +37,69 @@ export const getOrder = asyncHandler(async (req, res) => {
 export const createOrder = asyncHandler(async (req, res) => {
   const { total, paymentMethod, paymentNumber, orderItem, shipping } = req.body;
 
-  // console.log("Order Items:", orderItem);
-  // console.log("Shipping Details:", shipping);
+  console.log("Request Body:", req.body); // Debugging
+
+  // Validate the shipping object
+  if (
+    !shipping ||
+    !shipping.name ||
+    !shipping.email ||
+    !shipping.phone ||
+    !shipping.address ||
+    !shipping.city
+  ) {
+    res.status(400).json({ message: "Shipping information is incomplete" });
+    return;
+  }
 
   try {
+    // Validate that all products in the order exist
+    const productIds = orderItem.map((item) => item.product_id);
+    const existingProducts = await prisma.product.findMany({
+      where: {
+        id: { in: productIds },
+      },
+    });
+
+    // If any product is missing, return an error
+    if (existingProducts.length !== productIds.length) {
+      res.status(400).json({ message: "One or more products not found" });
+      return;
+    }
+
+    // Create the order
     const order = await prisma.order.create({
       data: {
         total: parseFloat(total),
         paymentMethod,
         paymentNumber,
-        orderItem: {
+        status: "Pending",
+        paymentStatus: "Pending",
+        OrderItem: {
           create: orderItem.map((item) => ({
-            product: {
+            quantity: item.quantity,
+            Product: {
               connect: {
-                id: item.product_id,
+                id: item.product_id, // Ensure this matches the Product model's ID
               },
             },
-            quantity: item.quantity,
           })),
         },
-        shipping: {
+        Shipping: {
           create: {
-            email: shipping.email, // Ensure these match your model
-            phone: shipping.phone,
             name: shipping.name,
+            email: shipping.email,
+            phone: shipping.phone,
             address: shipping.address,
+            city: shipping.city,
+            schedule: shipping.schedule || null, // Optional field
+            note: shipping.note || "", // Optional field
           },
         },
+      },
+      include: {
+        OrderItem: true,
+        Shipping: true,
       },
     });
 
