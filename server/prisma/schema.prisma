@@ -47,7 +47,7 @@ model Order {
   status String
   paymentMethod String
   paymentStatus String
-  paymentNumber String
+  paymentNumber String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   OrderItem OrderItem[]
@@ -72,8 +72,8 @@ model Shipping {
   name String
   email String
   phone String
-  Schedule String
-  Notes String
+  schedule String?
+  note String
   address String
   city String
   orderId String @db.ObjectId
