@@ -135,7 +135,7 @@ export default function Header() {
             to="/perfums"
             className="text-sm text-muted-foreground font-medium transition-colors hover:text-primary"
           >
-            Contact
+            Perfums
           </Link>
         </nav>
 
