@@ -1,6 +1,7 @@
 import Categories from "@/components/Categories";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import ProductsPage from "@/components/Products/Products";
 import React from "react";
 
 const Home = () => {
@@ -9,6 +10,7 @@ const Home = () => {
       <Header />
       <HeroSection />
       <Categories />
+      <ProductsPage />
     </div>
   );
 };
