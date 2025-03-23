@@ -20,76 +20,56 @@ import { Badge } from "../../../components/ui/badge";
 import { useNavigate } from "react-router-dom";
 
 interface Order {
-  id: number;
+  id: string;
   paymentMethod: string;
   paymentStatus: string;
   status: string;
-  shipping: Array<{
+  Shipping: Array<{
     name: string;
     email: string;
     phone: string;
     address: string;
-  }>;
-  orderItem: Array<{
-    productId: number;
+    city: string;
+  }> | null;
+  OrderItem: Array<{
     quantity: number;
-  }>;
+    Product: { id: string; name: string; price: number; image: string };
+  }> | null;
   total: number;
   createdAt: string;
 }
 
-interface Product {
-  id: number;
-  name: string;
-}
-
 export const OrderTable = () => {
   const [orders, setOrders] = useState<Order[]>([]);
-  const [products, setProducts] = useState<Product[]>([]); // State for products
   const [loading, setLoading] = useState(false);
 
-  const fetchOrdersAndProducts = async () => {
+  const fetchOrders = async () => {
     setLoading(true);
     try {
-      const [ordersResponse, productsResponse] = await Promise.all([
-        axios.get("http://localhost:8000/api/orders/"),
-        axios.get("http://localhost:8000/api/products/"),
-      ]);
-
-      setOrders(ordersResponse.data); // Store fetched orders in state
-      setProducts(productsResponse.data); // Store fetched products in state
+      const response = await axios.get("http://localhost:8000/api/orders/");
+      setOrders(response.data);
     } catch (error) {
       console.log(error);
     }
     setLoading(false);
   };
 
-  const productMap = products.reduce((acc, product) => {
-    acc[product.id] = product.name; // Map product ID to name
-    return acc;
-  }, {} as Record<number, string>);
-
-  // const ProductId =
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchOrdersAndProducts();
+    fetchOrders();
   }, []);
 
-  const handleDelete = async (orderId: any) => {
+  const handleDelete = async (orderId: string) => {
     try {
-      const data = await axios.delete(
-        `http://localhost:8000/api/orders/${orderId}`
-      );
-      console.log(data);
-      fetchOrdersAndProducts();
+      await axios.delete(`http://localhost:8000/api/orders/${orderId}`);
+      fetchOrders();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleUpdate = (id: any) => {
+  const handleUpdate = (id: string) => {
     navigate(`/dashboard/orders/update/${id}`);
   };
 
@@ -97,7 +77,7 @@ export const OrderTable = () => {
     <>
       {loading ? (
         <div className="flex items-center justify-center h-96">
-          <h1 className="text-xl ">Loading...</h1>
+          <h1 className="text-xl">Loading...</h1>
         </div>
       ) : orders?.length === 0 ? (
         <div className="flex items-center justify-center h-96">
@@ -121,11 +101,17 @@ export const OrderTable = () => {
             <TableBody>
               {orders?.map((order) => (
                 <TableRow key={order.id}>
-                  <TableCell>{order.shipping[0]?.name}</TableCell>
+                  {/* Safe access for shipping */}
                   <TableCell>
-                    {productMap[order.orderItem[0]?.productId]}
+                    {order.Shipping?.[0]?.name || "No Name"}
                   </TableCell>
-                  <TableCell>{order.orderItem[0]?.quantity}</TableCell>
+
+                  {/* Safe access for orderItem */}
+                  <TableCell>
+                    {order.OrderItem?.[0]?.Product?.name || "No Product"}
+                  </TableCell>
+
+                  <TableCell>{order.OrderItem?.[0]?.quantity || 0}</TableCell>
                   <TableCell>${order.total}</TableCell>
                   <TableCell>{order.paymentMethod}</TableCell>
                   <TableCell>
