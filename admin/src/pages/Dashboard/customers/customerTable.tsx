@@ -1,4 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { MoveHorizontalIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+// import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/ui/button";
 import {
   DropdownMenu,
@@ -14,9 +17,6 @@ import {
   TableHeader,
   TableRow,
 } from "../../../components/ui/table";
-import axios from "axios";
-import { MoveHorizontalIcon } from "lucide-react";
-import { useEffect, useState } from "react";
 
 interface Order {
   id: string;
@@ -36,7 +36,7 @@ interface Order {
 }
 
 export const CustomerTable = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(false);
 
