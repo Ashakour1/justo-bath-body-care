@@ -8,7 +8,6 @@ import Checkout from "./components/Checkout";
 import Header from "./components/Header";
 import CartPage from "./components/cart-items";
 import CheckoutPage from "./components/checkout-page";
-import { FooterSe } from "./components/footer-sec";
 import InvoicePage from "./components/invoice";
 import DesignPrinciples from "./pages/About/DesignPrinciples";
 import OurPhilosophy from "./pages/About/OurPhilosophy";
@@ -16,6 +15,7 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/Contact";
 import HomePage from "./pages/HomePage";
 import Products from "./pages/ProductsPage";
+import Footer from "./components/Footer";
 function App() {
   return (
     <>
@@ -33,7 +33,7 @@ function App() {
           <Route path="/shop/*" element={<NotFound />} />
           <Route path="/about/our-philosophy" element={<OurPhilosophy />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/check" element={<Checkout />} />
+         
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/invoice/:id" element={<InvoicePage />} />
           {/* <Route path="/products/:category" element={<ProductsCat />} />
@@ -47,7 +47,7 @@ function App() {
           <Route path="/contact/" element={<ContactPage />} />
         </Routes>
         {/* <Footer /> */}
-        <FooterSe />
+        <Footer />
       </Router>
     </>
   );
