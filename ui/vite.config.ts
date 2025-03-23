@@ -7,8 +7,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api/products": "http://localhost:8000",
-      "/api/orders": "http://localhost:8000",
+      "/api/products": "https://justo-bath-body-care.vercel.app/",
+      "/api/orders": "https://justo-bath-body-care.vercel.app/",
     },
   },
   resolve: {
