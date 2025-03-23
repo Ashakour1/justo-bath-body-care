@@ -4,7 +4,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import NotFound from "./components/NotFound";
 // import HomePage from "./pages/HomePage";
 import { Toaster } from "react-hot-toast";
-import Checkout from "./components/Checkout";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import CartPage from "./components/cart-items";
 import CheckoutPage from "./components/checkout-page";
@@ -15,7 +15,6 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/Contact";
 import HomePage from "./pages/HomePage";
 import Products from "./pages/ProductsPage";
-import Footer from "./components/Footer";
 function App() {
   return (
     <>
@@ -39,10 +38,7 @@ function App() {
           {/* <Route path="/products/:category" element={<ProductsCat />} />
           <Route path="/products/" element={<ProductsPage />} />
           <Route path="/products/isNew" element={<ProductsNew />} /> */}
-          <Route
-            path="/about/design-principles"
-            element={<DesignPrinciples />}
-          />
+         
           <Route path="/about/" element={<AboutPage />} />
           <Route path="/contact/" element={<ContactPage />} />
         </Routes>
