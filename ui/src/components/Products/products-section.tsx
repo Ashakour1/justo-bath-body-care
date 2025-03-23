@@ -9,7 +9,9 @@ const Products = () => {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get("/api/products?new=true");
+      const { data } = await axios.get(
+        "https://justo-bath-body-care-siem.vercel.app/api/products?new=true"
+      );
 
       setProducts(data);
     } catch (error) {
@@ -46,7 +48,7 @@ const Products = () => {
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-8">
-            {products.slice(0,5).map((item, index) => (
+            {products.slice(0, 5).map((item, index) => (
               <Product key={index} product={item} />
             ))}
           </div>

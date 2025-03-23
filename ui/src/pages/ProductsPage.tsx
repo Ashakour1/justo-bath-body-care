@@ -18,7 +18,9 @@ const Products = ({}) => {
     setLoading(true);
     try {
       const response = await axios.get(
-        category ? `/api/products` : `/api/products`,
+        category
+          ? `https://justo-bath-body-care-siem.vercel.app/api/products`
+          : `https://justo-bath-body-care-siem.vercel.app/api/products`,
         {
           params: {
             ...(category && { category }),
@@ -70,12 +72,12 @@ const Products = ({}) => {
                 </p>
               </div>
             </div>
-
             <div className="grid lg:grid-cols-4   md:grid-cols-3 sm:grid-cols-1 grid-cols-1 gap-5 py-5">
               {products.map((item, index) => (
                 <Product key={index} product={item} />
               ))}
-            </div>o
+            </div>
+            o
           </div>
         </main>
       )}

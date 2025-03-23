@@ -103,11 +103,13 @@ export default function CheckoutPage() {
 
     try {
       // Send order data to the API
-      const response = await axios.post("/api/orders/create", orderData);
+      const response = await axios.post(
+        "https://justo-bath-body-care-siem.vercel.app/api/orders/create",
+        orderData
+      );
 
       if (response.status === 201) {
         toast.success("Order placed successfully");
-
 
         // console.log(response.data.order.id);
         const orderId = response.data.order.id;
