@@ -32,7 +32,7 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "justo-bath-body-care-siem.vercel.app/api/users/login",
+        "https://justo-bath-body-care-siem.vercel.app/api/users/login",
         {
           method: "POST",
           headers: {

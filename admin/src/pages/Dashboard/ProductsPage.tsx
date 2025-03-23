@@ -43,7 +43,7 @@ export const ProductTable = () => {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        "justo-bath-body-care-siem.vercel.app/api/products/"
+        "https://justo-bath-body-care-siem.vercel.app/api/products/"
       ); // Replace with your API endpoint
       setProducts(data);
     } catch (error) {
@@ -60,7 +60,7 @@ export const ProductTable = () => {
     try {
       if (!confirm("Are you sure you want to delete this product?")) return;
       await axios.delete(
-        `justo-bath-body-care-siem.vercel.app/api/products/${id}`
+        `https://justo-bath-body-care-siem.vercel.app/api/products/${id}`
       );
       fetchProducts();
       toast.success("Product deleted successfully");

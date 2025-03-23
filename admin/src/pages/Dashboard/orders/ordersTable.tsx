@@ -47,7 +47,7 @@ export const OrderTable = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "justo-bath-body-care-siem.vercel.app/api/orders/"
+        "https://justo-bath-body-care-siem.vercel.app/api/orders/"
       );
       setOrders(response.data);
     } catch (error) {
@@ -65,7 +65,7 @@ export const OrderTable = () => {
   const handleDelete = async (orderId: string) => {
     try {
       await axios.delete(
-        `justo-bath-body-care-siem.vercel.app/api/orders/${orderId}`
+        `https://justo-bath-body-care-siem.vercel.app/api/orders/${orderId}`
       );
       fetchOrders();
     } catch (error) {

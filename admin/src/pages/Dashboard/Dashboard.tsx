@@ -42,7 +42,7 @@ export function DashboardPage() {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        `justo-bath-body-care-siem.vercel.app/api/${apikey}/`
+        `https://justo-bath-body-care-siem.vercel.app/api/${apikey}/`
       );
       if (apikey === "orders") {
         setOrders(data);
