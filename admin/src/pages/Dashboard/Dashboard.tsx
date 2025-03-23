@@ -41,7 +41,9 @@ export function DashboardPage() {
   const fetchProducts = async (apikey: any) => {
     setLoading(true);
     try {
-      const { data } = await axios.get(`http://localhost:8000/api/${apikey}/`);
+      const { data } = await axios.get(
+        `justo-bath-body-care-siem.vercel.app/api/${apikey}/`
+      );
       if (apikey === "orders") {
         setOrders(data);
       } else {

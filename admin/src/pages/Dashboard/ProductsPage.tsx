@@ -42,7 +42,9 @@ export const ProductTable = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get("http://localhost:8000/api/products/"); // Replace with your API endpoint
+      const { data } = await axios.get(
+        "justo-bath-body-care-siem.vercel.app/api/products/"
+      ); // Replace with your API endpoint
       setProducts(data);
     } catch (error) {
       console.log(error);
@@ -57,7 +59,9 @@ export const ProductTable = () => {
   const handleDelete = async (id: string) => {
     try {
       if (!confirm("Are you sure you want to delete this product?")) return;
-      await axios.delete(`http://localhost:8000/api/products/${id}`);
+      await axios.delete(
+        `justo-bath-body-care-siem.vercel.app/api/products/${id}`
+      );
       fetchProducts();
       toast.success("Product deleted successfully");
     } catch (error) {

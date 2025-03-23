@@ -38,7 +38,7 @@ const ProductForm = () => {
   const fetchProducts = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8000/api/products/${id}`
+        `justo-bath-body-care-siem.vercel.app/api/products/${id}`
       );
       setFormData(data);
     } catch (error) {
@@ -122,7 +122,7 @@ const ProductForm = () => {
     try {
       if (id) {
         const { data } = await axios.put(
-          `http://localhost:8000/api/products/${id}`,
+          `justo-bath-body-care-siem.vercel.app/api/products/${id}`,
           formDataToSend
         );
 
@@ -130,7 +130,7 @@ const ProductForm = () => {
         navigate("/dashboard/products");
       } else {
         const { data } = await axios.post(
-          "http://localhost:8000/api/products/",
+          "justo-bath-body-care-siem.vercel.app/api/products/",
           formDataToSend
         );
 

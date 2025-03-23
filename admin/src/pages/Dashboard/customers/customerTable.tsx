@@ -43,7 +43,9 @@ export const CustomerTable = () => {
   const fetchOrders = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get("http://localhost:8000/api/orders/");
+      const { data } = await axios.get(
+        "justo-bath-body-care-siem.vercel.app/api/orders/"
+      );
       setOrders(data);
       console.log(data);
     } catch (error) {
@@ -58,7 +60,9 @@ export const CustomerTable = () => {
 
   const handleDelete = async (orderId: string) => {
     try {
-      await axios.delete(`http://localhost:8000/api/orders/${orderId}`);
+      await axios.delete(
+        `justo-bath-body-care-siem.vercel.app/api/orders/${orderId}`
+      );
       fetchOrders();
     } catch (error) {
       console.log(error);
@@ -80,9 +84,7 @@ export const CustomerTable = () => {
           <div className=" flex justify-between ">
             <div className="flex flex-col space-y-2">
               <h1 className="text-xl font-bold">Customers Lists</h1>
-              <p className="">
-                
-              </p>
+              <p className=""></p>
             </div>
           </div>
           <div className="border shadow-sm rounded-lg p-2">
