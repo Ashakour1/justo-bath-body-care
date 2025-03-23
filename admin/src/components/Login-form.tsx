@@ -4,6 +4,8 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { useAuthStore } from "../store/store";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import { LoaderCircle } from "lucide-react";
 
 interface LoginFormProps {
   username: String;
@@ -15,6 +17,7 @@ const LoginForm = () => {
     username: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const login = useAuthStore((state) => state.login);
@@ -30,6 +33,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await fetch(
         "https://justo-bath-body-care-siem.vercel.app/api/users/login",
@@ -43,22 +47,28 @@ const LoginForm = () => {
       );
 
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        console.log(response);
+        toast.error(`HTTP error! Status: ${response.status}`);
+        return;
       }
 
       const data = await response.json();
-      console.log(data);
 
       login(data.username, data.password, data.token);
+      toast.success("Login successful");
 
       navigate("/dashboard");
     } catch (error) {
+      toast.error("An error occurred");
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="flex flex-col gap-6">
+      <Toaster position="top-center" />
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col items-center gap-2">
@@ -96,7 +106,7 @@ const LoginForm = () => {
               />
             </div>
             <Button type="submit" className="w-full h-11">
-              Login
+              {loading ? <LoaderCircle className="animate-spin" /> : "Login"}
             </Button>
           </div>
         </div>
