@@ -89,16 +89,16 @@ const ProductForm = () => {
   };
 
   // Handle select changes for dropdown fields
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const { id, value } = e.target;
-    setFormData((prev) => ({ ...prev, [id]: value }));
-  };
+  // const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   const { id, value } = e.target;
+  //   setFormData((prev) => ({ ...prev, [id]: value }));
+  // };
 
   // Handle checkbox changes for boolean fields
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, checked } = e.target;
-    setFormData((prev) => ({ ...prev, [id]: checked }));
-  };
+  // const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { id, checked } = e.target;
+  //   setFormData((prev) => ({ ...prev, [id]: checked }));
+  // };
 
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
@@ -191,7 +191,7 @@ const ProductForm = () => {
                 Category
               </Label>
               <Select
-                id="category"
+                // id="category"
                 value={formData.category}
                 onValueChange={(value) =>
                   setFormData({ ...formData, category: value })
@@ -214,7 +214,7 @@ const ProductForm = () => {
                 Size
               </Label>
               <Select
-                id="size"
+                // id="size"
                 value={formData.size}
                 onValueChange={(value) =>
                   setFormData({ ...formData, size: value })
