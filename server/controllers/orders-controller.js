@@ -5,8 +5,15 @@ import prisma from "../db/prisma.js";
 export const getOrders = asyncHandler(async (req, res) => {
   const orders = await prisma.order.findMany({
     include: {
-      OrderItem: true,
+      OrderItem: {
+        include: {
+          Product: true,
+        },
+      },
       Shipping: true,
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
 
