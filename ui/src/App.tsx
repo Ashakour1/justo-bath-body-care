@@ -9,7 +9,6 @@ import Header from "./components/Header";
 import CartPage from "./components/cart-items";
 import CheckoutPage from "./components/checkout-page";
 import InvoicePage from "./components/invoice";
-import DesignPrinciples from "./pages/About/DesignPrinciples";
 import OurPhilosophy from "./pages/About/OurPhilosophy";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/Contact";
