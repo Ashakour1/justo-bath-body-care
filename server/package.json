@@ -5,7 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node server.js",
     "server": "nodemon server.js",
+    "postinstall": "prisma generate",
+    "build": "npm run postinstall",
     "db-push": "npx prisma db push"
   },
   "keywords": [],
