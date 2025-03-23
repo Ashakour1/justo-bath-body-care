@@ -112,9 +112,9 @@ export default function CheckoutPage() {
         toast.success("Order placed successfully");
 
         // console.log(response.data.order.id);
-        const orderId = response.data.order.id;
+        // const orderId = response.data.order.id;
 
-        const invoiceUrl = `${window.location.origin}/invoice/${orderId}`;
+        // const invoiceUrl = `${window.location.origin}/invoice/${orderId}`;
 
         // Generate WhatsApp message
         const productsMessage = products
@@ -134,7 +134,7 @@ export default function CheckoutPage() {
           formData.city
         }\nOrder Details:\n${productsMessage}\nTotal: $${totalPrice.toFixed(
           2
-        )}\n\nNote: ${formData.note} View and Pay Invoice: ${invoiceUrl}`;
+        )}\n\nNote: ${formData.note}`;
 
         const phoneNumber = "252616590033";
         // Encode the message for WhatsApp URL
