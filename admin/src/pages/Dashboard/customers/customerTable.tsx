@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/ui/button";
 import {
   DropdownMenu,
@@ -16,59 +17,28 @@ import {
 import axios from "axios";
 import { MoveHorizontalIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
 
 interface Order {
-  id: number;
+  id: string;
+  total: number;
+  status: string;
   paymentMethod: string;
   paymentStatus: string;
-  status: string;
-  shipping: Array<{
+  createdAt: string;
+  Shipping: Array<{
+    id: string;
     name: string;
     email: string;
     phone: string;
     address: string;
+    city: string;
   }>;
-  orderItem: Array<{
-    productId: number;
-    quantity: number;
-  }>;
-  total: number;
-  createdAt: string;
 }
 
-// interface Product {
-//   id: number;
-//   name: string;
-// }
-
 export const CustomerTable = () => {
+  const navigate = useNavigate();
   const [orders, setOrders] = useState<Order[]>([]);
-  //   const [products, setProducts] = useState<Product[]>([]); // State for products
   const [loading, setLoading] = useState(false);
-
-  //   const fetchOrdersAndProducts = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const [ordersResponse, productsResponse] = await Promise.all([
-  //         axios.get("/api/orders/"),
-  //         axios.get("/api/products/"),
-  //       ]);
-
-  //       setOrders(ordersResponse.data); // Store fetched orders in state
-  //       setProducts(productsResponse.data); // Store fetched products in state
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //     setLoading(false);
-  //   };
-
-  //   const productMap = products.reduce((acc, product) => {
-  //     acc[product.id] = product.name; // Map product ID to name
-  //     return acc;
-  //   }, {} as Record<number, string>);
-
-  // const ProductId =
 
   const fetchOrders = async () => {
     setLoading(true);
@@ -82,83 +52,79 @@ export const CustomerTable = () => {
     setLoading(false);
   };
 
-  //   const navigate = useNavigate();
-
   useEffect(() => {
     fetchOrders();
   }, []);
 
-  const handleDelete = async (orderId: any) => {
+  const handleDelete = async (orderId: string) => {
     try {
-      const data = await axios.delete(`/api/orders/${orderId}`);
-      console.log(data);
+      await axios.delete(`http://localhost:8000/api/orders/${orderId}`);
       fetchOrders();
     } catch (error) {
       console.log(error);
     }
   };
 
-  //   const handleUpdate = (id: any) => {
-  //     navigate(`/dashboard/orders/update/${id}`);
-  //   };
-
   return (
     <>
       {loading ? (
         <div className="flex items-center justify-center h-96">
-          <h1 className="text-xl ">Loading...</h1>
+          <h1 className="text-xl">Loading...</h1>
         </div>
       ) : orders?.length === 0 ? (
         <div className="flex items-center justify-center h-96">
-          <h1 className="text-xl font-semibold">No customers Found</h1>
+          <h1 className="text-xl font-semibold">No customers found</h1>
         </div>
       ) : (
-        <div className="border shadow-sm rounded-lg p-2">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="min-w-[150px]">Customer Name</TableHead>
-                <TableHead className="min-w-[150px]">Phone</TableHead>
-                <TableHead className="min-w-[100px]">Email</TableHead>
-                <TableHead className="min-w-[150px]">Address</TableHead>
-
-                <TableHead className="text-right">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {orders.map((order) => (
-                <TableRow key={order.id}>
-                  <TableCell>{order.shipping[0]?.name}</TableCell>
-                  <TableCell>{order.shipping[0]?.phone}</TableCell>
-                  <TableCell>{order.shipping[0]?.email}</TableCell>
-                  <TableCell>{order.shipping[0]?.address}</TableCell>
-
-                  <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                          <MoveHorizontalIcon className="w-4 h-4" />
-                          <span className="sr-only">Actions</span>
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        {/* <DropdownMenuItem
-                          onClick={() => handleUpdate(order.id)}
-                        >
-                          Edit
-                        </DropdownMenuItem> */}
-                        <DropdownMenuItem
-                          onClick={() => handleDelete(order.id)}
-                        >
-                          Delete
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
+        <div className="p-6">
+          <div className=" flex justify-between ">
+            <div className="flex flex-col space-y-2">
+              <h1 className="text-xl font-bold">Customers Lists</h1>
+              <p className="">
+                
+              </p>
+            </div>
+          </div>
+          <div className="border shadow-sm rounded-lg p-2">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="min-w-[150px]">Customer Name</TableHead>
+                  <TableHead className="min-w-[150px]">Phone</TableHead>
+                  <TableHead className="min-w-[100px]">Email</TableHead>
+                  <TableHead className="min-w-[150px]">Address</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {orders.map((order) => (
+                  <TableRow key={order.id}>
+                    <TableCell>{order.Shipping[0]?.name || "N/A"}</TableCell>
+                    <TableCell>{order.Shipping[0]?.phone || "N/A"}</TableCell>
+                    <TableCell>{order.Shipping[0]?.email || "N/A"}</TableCell>
+                    <TableCell>{order.Shipping[0]?.address || "N/A"}</TableCell>
+                    <TableCell className="text-right">
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" size="icon">
+                            <MoveHorizontalIcon className="w-4 h-4" />
+                            <span className="sr-only">Actions</span>
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem
+                            onClick={() => handleDelete(order.id)}
+                          >
+                            Delete
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </div>
       )}
     </>
