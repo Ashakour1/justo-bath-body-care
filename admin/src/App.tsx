@@ -2,7 +2,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import { DashboardPage } from "./pages/Dashboard/Dashboard";
 import Sidebar from "./components/Sidebar";
-import Header from "./components/Header";
+// import Header from "./components/Header";
 import LoginPage from "./pages/LoginPage";
 import ProductForm from "./pages/Dashboard/products/add-product";
 import { ProductTable } from "./pages/Dashboard/ProductsPage";

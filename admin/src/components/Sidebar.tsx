@@ -1,16 +1,4 @@
-import {
-  BarChart,
-  Box,
-  Calendar,
-  CreditCard,
-  Home,
-  LayoutDashboard,
-  ListOrdered,
-  LogOut,
-  Package,
-  Settings,
-  Users,
-} from "lucide-react";
+import { Box, LayoutDashboard, ListOrdered, LogOut, Users } from "lucide-react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { useAuthStore } from "../store/store";
 
