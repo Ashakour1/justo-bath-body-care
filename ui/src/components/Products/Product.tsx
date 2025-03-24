@@ -1,14 +1,7 @@
-import { type ProductType } from "@/types/product.t";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart } from "lucide-react";
-import { Badge } from "../ui/badge";
 import { useCart } from "@/features/useCart";
+import { type ProductType } from "@/types/product.t";
+import { ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 type ProductProps = {
