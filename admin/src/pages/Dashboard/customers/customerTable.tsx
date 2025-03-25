@@ -84,10 +84,12 @@ export const CustomerTable = () => {
           <div className=" flex justify-between ">
             <div className="flex flex-col space-y-2">
               <h1 className="text-xl font-bold">Customers Lists</h1>
-              <p className=""></p>
+              <p className="">
+                View and manage all customers who have placed orders
+              </p>
             </div>
           </div>
-          <div className="border shadow-sm rounded-lg p-2">
+          <div className="border shadow-sm rounded-lg p-2 mt-5">
             <Table>
               <TableHeader>
                 <TableRow>

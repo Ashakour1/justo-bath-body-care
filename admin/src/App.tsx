@@ -8,6 +8,7 @@ import ProductForm from "./pages/Dashboard/products/add-product";
 import { ProductTable } from "./pages/Dashboard/ProductsPage";
 import { OrderTable } from "./pages/Dashboard/orders/ordersTable";
 import { CustomerTable } from "./pages/Dashboard/customers/customerTable";
+import OrderForm from "./pages/Dashboard/orders/EditOrder";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="products/update/:id" element={<ProductForm />} />
             <Route path="orders" element={<OrderTable />} />
             <Route path="customers" element={<CustomerTable />} />
+            <Route path="orders/update/:id" element={<OrderForm />} />
           </Route>
         </Routes>
       </Router>

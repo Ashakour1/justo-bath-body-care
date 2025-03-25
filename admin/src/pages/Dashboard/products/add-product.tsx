@@ -1,26 +1,13 @@
 "use client";
 
-import type React from "react";
 import { useEffect, useState } from "react";
 import { ArrowLeft, Upload } from "lucide-react";
-import { Button } from "../../../components/ui/button";
-import { Input } from "../../../components/ui/input";
-import { Textarea } from "../../../components/ui/textarea";
-import { Label } from "../../../components/ui/label";
-import { Checkbox } from "../../../components/ui/checkbox";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../../components/ui/select";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-// Define the type for the product
 type ProductType = {
+  _id?: string;
   name: string;
   price: string;
   category: string;
@@ -29,32 +16,17 @@ type ProductType = {
   description: string;
   isNew: boolean;
   inStock: boolean;
-  image: File | null; // Add type for image
+  image?: File | null;
+  imageUrl?: string;
 };
 
 const ProductForm = () => {
   const { id } = useParams();
-
-  const fetchProducts = async () => {
-    try {
-      const { data } = await axios.get(
-        `https://justo-bath-body-care-siem.vercel.app/api/products/${id}`
-      );
-      setFormData(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    if (id) {
-      fetchProducts();
-    }
-  }, [id]);
-
+  const navigate = useNavigate();
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(!!id); // Only loading when editing
 
-  // Initialize formData with empty fields and image field
   const [formData, setFormData] = useState<ProductType>({
     name: "",
     price: "",
@@ -64,43 +36,67 @@ const ProductForm = () => {
     description: "",
     isNew: false,
     inStock: false,
-    image: null, // Initialize the image field as null
+    image: null,
   });
 
-  const navigate = useNavigate();
+  const fetchProduct = async () => {
+    try {
+      setIsLoading(true);
+      const { data } = await axios.get(
+        `https://justo-bath-body-care-siem.vercel.app/api/products/${id}`
+      );
 
-  // Handle file input change for image
+      setFormData({
+        name: data.name || "",
+        price: data.price || "",
+        category: data.category || "",
+        rating: data.rating || "",
+        size: data.size || "",
+        description: data.description || "",
+        isNew: data.isNew || false,
+        inStock: data.inStock || false,
+        imageUrl: data.imageUrl || "",
+      });
+
+      if (data.imageUrl) {
+        setImagePreview(data.imageUrl);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to fetch product data");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setImageFile(file);
-      setFormData((prev) => ({ ...prev, image: file })); // Update the image in formData
+      setFormData((prev) => ({ ...prev, image: file }));
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
-  // Handle input changes for text fields
   const handleInputChange = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
-    const { id, value } = e.target;
-    setFormData((prev) => ({ ...prev, [id]: value }));
+    const { id, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+
+    setFormData((prev) => ({
+      ...prev,
+      [id]: type === "checkbox" ? checked : value,
+    }));
   };
 
-  // Handle select changes for dropdown fields
-  // const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  //   const { id, value } = e.target;
-  //   setFormData((prev) => ({ ...prev, [id]: value }));
-  // };
-
-  // Handle checkbox changes for boolean fields
-  // const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { id, checked } = e.target;
-  //   setFormData((prev) => ({ ...prev, [id]: checked }));
-  // };
-
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -114,45 +110,62 @@ const ProductForm = () => {
     formDataToSend.append("isNew", formData.isNew.toString());
     formDataToSend.append("inStock", formData.inStock.toString());
 
-    // If an image is selected, append it to the form data
     if (formData.image) {
       formDataToSend.append("image", formData.image);
     }
 
     try {
       if (id) {
-        const { data } = await axios.put(
-          `https://https://justo-bath-body-care-siem.vercel.app/api/products/${id}`,
-          formDataToSend
+        await axios.put(
+          `https://justo-bath-body-care-siem.vercel.app/api/products/${id}`,
+          formDataToSend,
+          { headers: { "Content-Type": "multipart/form-data" } }
         );
-
-        toast.success(data.message);
-        navigate("/dashboard/products");
+        toast.success("Product updated successfully");
       } else {
-        const { data } = await axios.post(
-          "https://https://justo-bath-body-care-siem.vercel.app/api/products/",
-          formDataToSend
+        await axios.post(
+          "https://justo-bath-body-care-siem.vercel.app/api/products/",
+          formDataToSend,
+          { headers: { "Content-Type": "multipart/form-data" } }
         );
-
-        toast.success(data.message);
-        navigate("/dashboard/products");
+        toast.success("Product created successfully");
       }
-    } catch (error) {
-      // console.log(error);
-      toast.error((error as any).response.data.message);
+      navigate("/dashboard/products");
+    } catch (error: any) {
+      console.error(error);
+      toast.error(error.response?.data?.message || "An error occurred");
     }
   };
 
+  useEffect(() => {
+    if (id) {
+      fetchProduct();
+    }
+  }, [id]);
+
+  if (isLoading) {
+    return <div className="max-w-4xl mx-auto py-6 px-4">Loading...</div>;
+  }
+
   return (
-    <div className="max-w-3xl  mx-auto py-6 px-4">
+    <div className="max-w-4xl mx-auto py-6 px-4">
       <div className="flex flex-col items-start mb-6">
-        <Button variant="ghost" size="icon" className="mr-2 h-9 w-9">
+        <button
+          onClick={() => navigate("/dashboard/products")}
+          className="mr-2 h-9 w-9 flex items-center justify-center rounded-md hover:bg-gray-100"
+        >
           <ArrowLeft className="h-5 w-5" />
-          Back
-        </Button>
+          <span className="sr-only">Back</span>
+        </button>
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold">Add New Product</h1>
-          <p>Fill in the details below to add a new product to your store.</p>
+          <h1 className="text-2xl font-bold">
+            {id ? "Edit Product" : "Add New Product"}
+          </h1>
+          <p className="text-gray-600">
+            {id
+              ? "Update the product details below."
+              : "Fill in the details below to add a new product to your store."}
+          </p>
         </div>
       </div>
 
@@ -160,87 +173,93 @@ const ProductForm = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="name" className="font-medium">
+              <label htmlFor="name" className="block font-medium text-gray-700">
                 Product Name
-              </Label>
-              <Input
+              </label>
+              <input
                 id="name"
+                type="text"
                 value={formData.name}
                 onChange={handleInputChange}
                 placeholder="Enter product name"
+                required
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="price" className="font-medium">
-                Price ($)
-              </Label>
-              <Input
+              <label
+                htmlFor="price"
+                className="block font-medium text-gray-700"
+              >
+                Price (ksh)
+              </label>
+              <input
                 id="price"
                 type="number"
                 value={formData.price}
                 onChange={handleInputChange}
                 placeholder="0.00"
+                required
+                min="0"
+                step="0.01"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="category" className="font-medium">
-                Category
-              </Label>
-              <Select
-                // id="category"
-                value={formData.category}
-                onValueChange={(value) =>
-                  setFormData({ ...formData, category: value })
-                }
+              <label
+                htmlFor="category"
+                className="block font-medium text-gray-700"
               >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select a category" />
-                </SelectTrigger>
-                <SelectContent className="w-full">
-                  <SelectItem value="perfumes">perfumes</SelectItem>
-                  <SelectItem value="rituals">Rituals</SelectItem>
-                  <SelectItem value="Cosmetics">Cosmetics</SelectItem>
-                  <SelectItem value="bath-body">Bath and body works</SelectItem>
-                </SelectContent>
-              </Select>
+                Category
+              </label>
+              <select
+                id="category"
+                value={formData.category}
+                onChange={handleInputChange}
+                required
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+              >
+                <option value="">Select a category</option>
+                <option value="Perfumes">Perfumes</option>
+                <option value="Rituals">Rituals</option>
+                <option value="Justo cosmetics">Justo cosmetics</option>
+                <option value="Bath and body Works">Bath and body works</option>
+              </select>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="size" className="font-medium">
+              <label htmlFor="size" className="block font-medium text-gray-700">
                 Size
-              </Label>
-              <Select
-                // id="size"
+              </label>
+              <select
+                id="size"
                 value={formData.size}
-                onValueChange={(value) =>
-                  setFormData({ ...formData, size: value })
-                }
+                onChange={handleInputChange}
+                required
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
               >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select a size" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="xs">XS</SelectItem>
-                  <SelectItem value="s">S</SelectItem>
-                  <SelectItem value="m">M</SelectItem>
-                  <SelectItem value="l">L</SelectItem>
-                  <SelectItem value="xl">XL</SelectItem>
-                  <SelectItem value="xxl">XXL</SelectItem>
-                </SelectContent>
-              </Select>
+                <option value="">Select a size</option>
+                <option value="50ml">50ml</option>
+                <option value="100ml">100ml</option>
+                <option value="200ml">200ml</option>
+                <option value="500ml">500ml</option>
+              </select>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="rating" className="font-medium">
+              <label
+                htmlFor="rating"
+                className="block font-medium text-gray-700"
+              >
                 Rating (0-5)
-              </Label>
-              <Input
+              </label>
+              <input
                 id="rating"
                 type="number"
                 min="0"
@@ -248,25 +267,27 @@ const ProductForm = () => {
                 value={formData.rating}
                 onChange={handleInputChange}
                 placeholder="5"
+                required
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
               />
             </div>
 
             <div className="border border-gray-200 rounded-md p-4">
               <div className="flex items-start space-x-2">
-                <Checkbox
+                <input
                   id="isNew"
+                  type="checkbox"
                   checked={formData.isNew}
-                  onCheckedChange={(checked) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      isNew: checked as boolean,
-                    }))
-                  }
+                  onChange={handleInputChange}
+                  className="h-4 w-4 mt-1 text-black focus:ring-black border-gray-300 rounded"
                 />
                 <div>
-                  <Label htmlFor="isNew" className="font-medium">
+                  <label
+                    htmlFor="isNew"
+                    className="block font-medium text-gray-700"
+                  >
                     New Arrival
-                  </Label>
+                  </label>
                   <p className="text-sm text-gray-500">
                     Mark this product as a new arrival
                   </p>
@@ -278,21 +299,20 @@ const ProductForm = () => {
           <div className="md:col-span-1 md:col-start-2">
             <div className="border border-gray-200 rounded-md p-4">
               <div className="flex items-start space-x-2">
-                <Checkbox
+                <input
                   id="inStock"
+                  type="checkbox"
                   checked={formData.inStock}
-                  onCheckedChange={(checked) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      inStock: checked as boolean,
-                    }))
-                  }
+                  onChange={handleInputChange}
+                  className="h-4 w-4 mt-1 text-black focus:ring-black border-gray-300 rounded"
                 />
-
                 <div>
-                  <Label htmlFor="inStock" className="font-medium">
+                  <label
+                    htmlFor="inStock"
+                    className="block font-medium text-gray-700"
+                  >
                     In Stock
-                  </Label>
+                  </label>
                   <p className="text-sm text-gray-500">
                     Is this product currently in stock?
                   </p>
@@ -302,31 +322,36 @@ const ProductForm = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="description" className="font-medium">
+            <label
+              htmlFor="description"
+              className="block font-medium text-gray-700"
+            >
               Description
-            </Label>
-            <Textarea
+            </label>
+            <textarea
               id="description"
               value={formData.description}
               onChange={handleInputChange}
               placeholder="Enter product description"
-              className="min-h-[120px]"
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent min-h-[120px]"
             />
           </div>
 
           <div className="space-y-2">
-            <Label className="font-medium">Product Image</Label>
+            <label className="block font-medium text-gray-700">
+              Product Image
+            </label>
             <div className="flex items-center space-x-4">
-              <Button
+              <button
                 type="button"
-                variant="outline"
-                className="bg-none flex items-center  border border-gray-300 "
                 onClick={() => document.getElementById("image-upload")?.click()}
+                className="bg-white border border-gray-300 rounded-md px-4 py-2 flex items-center hover:bg-gray-50"
               >
                 <Upload className="h-4 w-4 mr-2" />
                 Upload Image
-              </Button>
-              <Input
+              </button>
+              <input
                 id="image-upload"
                 type="file"
                 accept="image/jpeg,image/png,image/gif"
@@ -342,18 +367,24 @@ const ProductForm = () => {
                 Selected: {imageFile.name}
               </p>
             )}
+            {imagePreview && (
+              <div className="mt-4">
+                <img
+                  src={imagePreview}
+                  alt="Preview"
+                  className="h-40 w-40 object-cover rounded-md"
+                />
+              </div>
+            )}
           </div>
 
-          <div
-            className="w-full 
-          flex space-x-4 pt-4"
-          >
-            <Button
+          <div className="w-full flex space-x-4 pt-4">
+            <button
               type="submit"
-              className="bg-black text-white hover:bg-gray-800"
+              className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
             >
-              Save Product
-            </Button>
+              {id ? "Update Product" : "Save Product"}
+            </button>
           </div>
         </form>
       </div>

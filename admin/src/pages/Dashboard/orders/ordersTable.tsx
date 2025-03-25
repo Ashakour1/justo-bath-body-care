@@ -88,72 +88,84 @@ export const OrderTable = () => {
           <h1 className="text-xl font-semibold">No Orders Found</h1>
         </div>
       ) : (
-        <div className="border shadow-sm rounded-lg p-2">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="min-w-[150px]">Customer</TableHead>
-                <TableHead className="min-w-[150px]">Product</TableHead>
-                <TableHead className="min-w-[100px]">Quantity</TableHead>
-                <TableHead className="min-w-[150px]">Total Price</TableHead>
-                <TableHead className="min-w-[150px]">Payment Method</TableHead>
-                <TableHead className="min-w-[150px]">Status</TableHead>
-                <TableHead className="min-w-[150px]">Payment Status</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {orders?.map((order) => (
-                <TableRow key={order.id}>
-                  {/* Safe access for shipping */}
-                  <TableCell>
-                    {order.Shipping?.[0]?.name || "No Name"}
-                  </TableCell>
-
-                  {/* Safe access for orderItem */}
-                  <TableCell>
-                    {order.OrderItem?.[0]?.Product?.name || "No Product"}
-                  </TableCell>
-
-                  <TableCell>{order.OrderItem?.[0]?.quantity || 0}</TableCell>
-                  <TableCell>${order.total}</TableCell>
-                  <TableCell>{order.paymentMethod}</TableCell>
-                  <TableCell>
-                    <Badge className="text-xs" variant="outline">
-                      {order.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    <Badge className="text-xs" variant="outline">
-                      {order.paymentStatus}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                          <MoveHorizontalIcon className="w-4 h-4" />
-                          <span className="sr-only">Actions</span>
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem
-                          onClick={() => handleUpdate(order.id)}
-                        >
-                          Edit
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                          onClick={() => handleDelete(order.id)}
-                        >
-                          Delete
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
+        <div className="p-6">
+          <div className=" flex justify-between ">
+            <div className="flex flex-col space-y-2">
+              <h1 className="text-xl font-bold">Products Lists</h1>
+              <p className="">List of all products available in the store</p>
+            </div>
+          </div>
+          <div className="border shadow-sm rounded-lg p-2 mt-5">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="min-w-[150px]">Customer</TableHead>
+                  <TableHead className="min-w-[150px]">Product</TableHead>
+                  <TableHead className="min-w-[100px]">Quantity</TableHead>
+                  <TableHead className="min-w-[150px]">Total Price</TableHead>
+                  <TableHead className="min-w-[150px]">
+                    Payment Method
+                  </TableHead>
+                  <TableHead className="min-w-[150px]">Status</TableHead>
+                  <TableHead className="min-w-[150px]">
+                    Payment Status
+                  </TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {orders?.map((order) => (
+                  <TableRow key={order.id}>
+                    {/* Safe access for shipping */}
+                    <TableCell>
+                      {order.Shipping?.[0]?.name || "No Name"}
+                    </TableCell>
+
+                    {/* Safe access for orderItem */}
+                    <TableCell>
+                      {order.OrderItem?.[0]?.Product?.name || "No Product"}
+                    </TableCell>
+
+                    <TableCell>{order.OrderItem?.[0]?.quantity || 0}</TableCell>
+                    <TableCell>${order.total}</TableCell>
+                    <TableCell>{order.paymentMethod}</TableCell>
+                    <TableCell>
+                      <Badge className="text-xs" variant="outline">
+                        {order.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>
+                      <Badge className="text-xs" variant="outline">
+                        {order.paymentStatus}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" size="icon">
+                            <MoveHorizontalIcon className="w-4 h-4" />
+                            <span className="sr-only">Actions</span>
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem
+                            onClick={() => handleUpdate(order.id)}
+                          >
+                            Edit
+                          </DropdownMenuItem>
+                          <DropdownMenuItem
+                            onClick={() => handleDelete(order.id)}
+                          >
+                            Delete
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </div>
       )}
     </>

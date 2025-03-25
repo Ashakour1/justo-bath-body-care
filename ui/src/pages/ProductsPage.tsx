@@ -77,7 +77,6 @@ const Products = ({}) => {
                 <Product key={index} product={item} />
               ))}
             </div>
-            o
           </div>
         </main>
       )}
