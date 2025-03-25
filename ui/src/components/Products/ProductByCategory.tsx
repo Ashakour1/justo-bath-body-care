@@ -9,25 +9,25 @@ import type { ProductType } from "@/types/product.t";
 // Define the categories with updated link paths
 const categories = [
   {
-    id: "perfumes",
+    id: "Perfumes",
     name: "Perfumes",
     description: "Explore a wide range of fragrances.",
     link: "/Shop/perfumes",
   },
   {
-    id: "rituals",
+    id: "Rituals",
     name: "Rituals",
     description: "Indulge in luxury with our rituals.",
     link: "/Shop/rituals",
   },
   {
-    id: "justocosmetics",
+    id: "Justo cosmetics",
     name: "Justo Cosmetics",
     description: "High-quality cosmetics for you.",
     link: "/Shop/justocosmetics",
   },
   {
-    id: "bath-and-body-works",
+    id: "Bath and body Works",
     name: "Bath & Body Works",
     description: "Pamper your body with our selection.",
     link: "/Shop/bath-and-body-works",
