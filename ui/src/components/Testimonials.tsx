@@ -80,7 +80,7 @@ export default function TestimonialsSection() {
     <section className="py-16 px-4 bg-gradient-to-b from-white to-slate-50">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#D4AF37]">
             Real Results, Real People
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto">
