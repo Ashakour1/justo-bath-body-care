@@ -16,7 +16,7 @@ const categories = [
   },
   {
     id: "Rituals",
-    name: "Rituals",
+    name: "Rituals ...",
     description: "Indulge in luxury with our rituals.",
     link: "/Shop/Rituals",
   },
