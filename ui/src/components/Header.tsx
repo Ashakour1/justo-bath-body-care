@@ -20,7 +20,7 @@ interface NavItemProps {
 const NavItem: React.FC<NavItemProps> = ({ href, children }) => (
   <Link
     to={href}
-    className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary relative group"
+    className="text-sm font-medium text-gray-700 transition-colors hover:text-primary relative group"
   >
     {children}
     <span className="absolute inset-x-0 bottom-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
@@ -65,20 +65,20 @@ const Header = () => {
           </Link>
 
           <nav
-            className={`absolute md:relative top-full left-0 right-0 bg-background md:bg-transparent ${
+            className={`absolute md:relative top-full left-0 right-0 bg-background md:bg-transparent  ${
               isMobileMenuOpen ? "block" : "hidden"
             } md:block`}
           >
-            <ul className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8 p-4 md:p-0">
-              <li>
+            <ul className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0  md:space-x-8 p-4 md:p-0">
+              <li className="text-gray-800">
                 <NavItem href="/Shop/perfumes">Perfumes</NavItem>
               </li>
-              <li>
+              <li className="text-black">
                 <NavItem href="/Shop">Shop</NavItem>
               </li>
               <li>
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="flex items-center text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+                  <DropdownMenuTrigger className="flex items-center text-sm font-medium text-gray-700 transition-colors hover:text-primary">
                     Collections <ChevronDown className="ml-1 h-4 w-4" />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
