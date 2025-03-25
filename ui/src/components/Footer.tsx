@@ -1,23 +1,22 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 
-
 const Footer = () => {
   return (
-    <footer className="w-full border-t bg-background py-8">
+    <footer className="w-full border-t bg-black text-[#f5d877] py-8">
       <div className="container px-4 md:px-6">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Contact Info</h3>
             <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4 text-muted-foreground" />
+              <Phone className="h-4 w-4 D4AF37" />
               <span>079073690</span>
             </div>
             <div className="flex items-start gap-2">
-              <MapPin className="h-4 w-4 text-muted-foreground mt-1" />
+              <MapPin className="h-4 w-4 D4AF37 mt-1" />
               <span>Nairobi, Kilimani, Ring Rd road</span>
             </div>
             <div className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-muted-foreground" />
+              <Mail className="h-4 w-4 D4AF37" />
               <a
                 href="mailto:Justokilimani@gmail.com"
                 className="hover:underline"
@@ -45,17 +44,13 @@ const Footer = () => {
           </div>
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Business Hours</h3>
-            <p className="text-sm text-muted-foreground">
-              Monday - Friday: 9am - 5pm
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Saturday: 10am - 2pm
-            </p>
-            <p className="text-sm text-muted-foreground">Sunday: Closed</p>
+            <p className="text-sm D4AF37">Monday - Friday: 9am - 5pm</p>
+            <p className="text-sm D4AF37">Saturday: 10am - 2pm</p>
+            <p className="text-sm D4AF37">Sunday: Closed</p>
           </div>
         </div>
         <div className="mt-8 border-t pt-6">
-          <p className="text-center text-sm text-muted-foreground">
+          <p className="text-center text-sm D4AF37">
             © 2025 Justo Kilimani. All rights reserved.
           </p>
         </div>
