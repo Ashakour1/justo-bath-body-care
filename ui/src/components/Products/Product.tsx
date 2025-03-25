@@ -13,7 +13,6 @@ type ProductProps = {
 
 const Product = ({ product }: ProductProps) => {
   const { AddCart } = useCart();
-  const navigate = useNavigate();
   // const [isHovered, setIsHovered] = useState(false);
 
   const handleAddToCart = () => {
