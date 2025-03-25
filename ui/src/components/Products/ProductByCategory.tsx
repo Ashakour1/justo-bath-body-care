@@ -12,25 +12,25 @@ const categories = [
     id: "Perfumes",
     name: "Perfumes",
     description: "Explore a wide range of fragrances.",
-    link: "/Shop/perfumes",
+    link: "/Shop/Perfumes",
   },
   {
     id: "Rituals",
     name: "Rituals",
     description: "Indulge in luxury with our rituals.",
-    link: "/Shop/rituals",
+    link: "/Shop/Rituals",
   },
   {
     id: "Justo cosmetics",
     name: "Justo Cosmetics",
     description: "High-quality cosmetics for you.",
-    link: "/Shop/justocosmetics",
+    link: "/Shop/Justo Cosmetics",
   },
   {
     id: "Bath and body Works",
     name: "Bath & Body Works",
     description: "Pamper your body with our selection.",
-    link: "/Shop/bath-and-body-works",
+    link: "/Shop/Bath and body Works",
   },
 ];
 

@@ -97,6 +97,7 @@ export const CustomerTable = () => {
                   <TableHead className="min-w-[150px]">Phone</TableHead>
                   <TableHead className="min-w-[100px]">Email</TableHead>
                   <TableHead className="min-w-[150px]">Address</TableHead>
+                  <TableHead className="min-w-[150px]">City</TableHead>
                   <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
@@ -107,6 +108,7 @@ export const CustomerTable = () => {
                     <TableCell>{order.Shipping[0]?.phone || "N/A"}</TableCell>
                     <TableCell>{order.Shipping[0]?.email || "N/A"}</TableCell>
                     <TableCell>{order.Shipping[0]?.address || "N/A"}</TableCell>
+                    <TableCell>{order.Shipping[0]?.city || "N/A"}</TableCell>
                     <TableCell className="text-right">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>

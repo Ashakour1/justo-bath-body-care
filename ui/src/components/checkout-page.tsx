@@ -173,6 +173,17 @@ export default function CheckoutPage() {
         //     totalPrice,
         //   },
         // });
+
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          address: "",
+          city: "",
+          paymentMethod: "card",
+          paymentNumber: "",
+          note: "",
+        });
       } else {
         toast.error("Failed to place order. Please try again.");
       }
@@ -250,6 +261,7 @@ export default function CheckoutPage() {
                 <Input
                   id="phone"
                   type="tel"
+                  placeholder="+254XXXXXXXX"
                   value={formData.phone}
                   onChange={handleInputChange}
                   className="h-12"
@@ -270,8 +282,8 @@ export default function CheckoutPage() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="Nairobi">Nairobi</SelectItem>
-                    <SelectItem value="Mombasa">Mombasa</SelectItem>
-                    <SelectItem value="Kisumu">Kisumu</SelectItem>
+                    {/* <SelectItem value="Mombasa">Mombasa</SelectItem>
+                    <SelectItem value="Kisumu">Kisumu</SelectItem> */}
                   </SelectContent>
                 </Select>
               </div>
@@ -354,7 +366,7 @@ export default function CheckoutPage() {
                   className="flex items-center cursor-pointer"
                 >
                   <CreditCard className="w-5 h-5 mr-2" />
-                  Credit Card
+                  Credit Card (Coming soon)
                 </Label>
               </div>
               <div className="flex items-center space-x-2 border rounded-lg p-4 cursor-pointer [&:has(:checked)]:border-black">

@@ -14,7 +14,7 @@ export const Categories: Category[] = [
     image: "/product4.jpg",
   },
   {
-    name: "Rituals",
+    name: "Bath & Body Works",
     image: "/product4.jpg",
   },
 ];

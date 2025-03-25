@@ -46,10 +46,10 @@ const HeroSection = () => {
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 <Link
-                  to="/contact"
+                  to="/shop"
                   className="inline-flex h-10 items-center justify-center rounded-lg border border-[#D4AF37] bg-transparent px-4 sm:px-6 md:px-8 text-sm font-medium text-black transition-colors hover:bg-[#FFF8DC] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#FFF8DC]"
                 >
-                  Book An Appointment
+                  Shop Now
                   <motion.span
                     animate={{ x: [0, 5, 0] }}
                     transition={{
