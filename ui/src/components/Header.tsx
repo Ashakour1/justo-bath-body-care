@@ -71,7 +71,7 @@ const Header = () => {
           >
             <ul className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0  md:space-x-8 p-4 md:p-0">
               <li className="text-gray-800">
-                <NavItem href="/Shop/perfumes">Perfumes</NavItem>
+                <NavItem href="/Shop/justo">Justo Cosmetics</NavItem>
               </li>
               <li className="text-black">
                 <NavItem href="/Shop">Shop</NavItem>
