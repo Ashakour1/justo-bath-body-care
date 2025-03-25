@@ -74,7 +74,7 @@ const Header = () => {
           >
             <ul className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0  md:space-x-8 p-4 md:p-0">
               <li className="text-gray-800">
-                <NavItem href="/Shop/justo">Justo Cosmetics</NavItem>
+                <NavItem href="/Shop/Justo cosmetics">Justo Cosmetics</NavItem>
               </li>
               <li className="text-black">
                 <NavItem href="/Shop">Shop</NavItem>
@@ -86,20 +86,20 @@ const Header = () => {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
                     <DropdownMenuItem>
-                      <Link to="/Shop/collection/rituals">Rituals</Link>
+                      <Link to="/Shop/collection/Rituals">Rituals</Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <Link to="/Shop/collection/bath&bodyworks">
+                      <Link to="/Shop/collection/Bath and body Works">
                         Bath & Body Works
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <Link to="/Shop/collection/justocosmetics">
+                      <Link to="/Shop/collection/Justo cosmetics">
                         Justo Cosmetics
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <Link to="/Shop/collection/perfumes">Perfumes</Link>
+                      <Link to="/Shop/collection/Perfumes">Perfumes</Link>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>

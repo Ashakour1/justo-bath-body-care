@@ -43,15 +43,15 @@ const Products = ({}) => {
   return (
     <>
       {loading ? (
-        <div className="flex items-center justify-center h-96">
+        <div className="container mx-auto flex items-center justify-center min-h-screen">
           <h1 className="text-xl ">Loading...</h1>
         </div>
       ) : products?.length === 0 ? (
-        <div className="flex items-center justify-center h-96">
+        <div className="container mx-auto flex items-center justify-center min-h-screen">
           <h1 className="text-xl font-semibold">No Products Found</h1>
         </div>
       ) : (
-        <main className="container mx-auto md:px-4 lg:px-0 px-4 py-10">
+        <main className="container mx-auto md:px-4 lg:px-4 px-4 py-10">
           <div>
             <div className="flex items-center justify-between ">
               <div className="flex flex-col gap-2">
