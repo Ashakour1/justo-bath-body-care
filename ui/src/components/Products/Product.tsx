@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/features/useCart";
 import type { ProductType } from "@/types/product.t";
 import { ShoppingBag, Star } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 type ProductProps = {
   product: ProductType;
