@@ -75,6 +75,15 @@ export const ProductTable = () => {
 
   return (
     <>
+      <div className=" flex justify-between p-6 ">
+        <div className="flex flex-col space-y-2">
+          <h1 className="text-xl font-bold">Products Lists</h1>
+          <p className="">List of all products available in the store</p>
+        </div>
+        <Button onClick={() => navigate("/dashboard/products/add-product")}>
+          Add New Product
+        </Button>
+      </div>
       {loading ? (
         <div className="flex items-center justify-center p-6 h-96">
           <h1 className="text-xl">Loading...</h1>
@@ -84,16 +93,7 @@ export const ProductTable = () => {
           <h1 className="text-xl font-semibold">No Products Found</h1>
         </div>
       ) : (
-        <div className="space-y-4 p-6">
-          <div className=" flex justify-between ">
-            <div className="flex flex-col space-y-2">
-              <h1 className="text-xl font-bold">Products Lists</h1>
-              <p className="">List of all products available in the store</p>
-            </div>
-            <Button onClick={() => navigate("/dashboard/products/add-product")}>
-              Add New Product
-            </Button>
-          </div>
+        <div className="space-y-4">
           <div className="border rounded-sm p-2">
             <Table>
               <TableHeader>
