@@ -11,6 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useCart } from "@/features/useCart";
 
 interface NavItemProps {
   href: string;
@@ -30,6 +31,8 @@ const NavItem: React.FC<NavItemProps> = ({ href, children }) => (
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const { products } = useCart();
 
   // const { cart } = useCart();
   useEffect(() => {
@@ -135,7 +138,7 @@ const Header = () => {
               <Button variant="ghost" size="icon" className="relative">
                 <ShoppingBag className="h-5 w-5" />
                 <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">
-                  3
+                  {products.length}
                 </span>
                 <span className="sr-only">Shopping cart</span>
               </Button>

@@ -114,7 +114,7 @@ export default function CartPage() {
 
                   <div className="col-span-2 flex items-center justify-end gap-4">
                     <span className="font-medium">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      {(item.price * item.quantity).toFixed(2)} Ksh
                     </span>
                     <button
                       onClick={() => RemoveCart(item.id)}
@@ -135,7 +135,7 @@ export default function CartPage() {
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-500">Subtotal</span>
-                  <span>${totalPrice.toFixed(2)}</span>
+                  <span> {totalPrice.toFixed(2)} Ksh</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Shipping</span>
@@ -146,7 +146,7 @@ export default function CartPage() {
 
                 <div className="flex justify-between text-base font-medium">
                   <span>Total</span>
-                  <span>${totalPrice.toFixed(2)}</span>
+                  <span>{totalPrice.toFixed(2)} Ksh</span>
                 </div>
               </div>
 

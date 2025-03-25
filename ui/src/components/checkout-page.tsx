@@ -132,7 +132,7 @@ export default function CheckoutPage() {
           formData.address
         }, ${
           formData.city
-        }\nOrder Details:\n${productsMessage}\nTotal: $${totalPrice.toFixed(
+        }\nOrder Details:\n${productsMessage}\nTotal: Ksh${totalPrice.toFixed(
           2
         )}\n\nNote: ${formData.note}`;
 
@@ -424,7 +424,7 @@ export default function CheckoutPage() {
                         Qty: {item.quantity}
                       </span>
                       <span className="text-sm">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        Ksh{(item.price * item.quantity).toFixed(2)}
                       </span>
                     </div>
                   </div>

@@ -18,7 +18,6 @@ const Product = ({ product }: ProductProps) => {
 
   const handleAddToCart = () => {
     AddCart({ ...product, quantity: 1 });
-    navigate("/cart");
   };
 
   // Generate star rating
@@ -70,12 +69,20 @@ const Product = ({ product }: ProductProps) => {
           </h3>
 
           <p className="text-sm font-semibold text-gray-900 mb-2">
-            KSH{product.price}
+            {product.price} Ksh
           </p>
         </div>
 
         {/* Star Rating */}
-        <div className="flex justify-center mb-4">{renderStars()}</div>
+        <div className="flex  justify-between">
+          <h3 className="text-sm font-medium mb-2 text-gray-900 line-clamp-2 min-h-[2.5rem]">
+            {product.size}
+          </h3>
+
+          <p className="text-sm font-semibold text-gray-900 mb-2">
+            {renderStars()}
+          </p>
+        </div>
 
         {/* Always visible Add to Bag button */}
         <div className="mt-auto">
