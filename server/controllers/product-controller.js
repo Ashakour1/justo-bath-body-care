@@ -5,7 +5,7 @@ import cloudinary from "../config/cloudinary.js";
 export const getProducts = asyncHandler(async (req, res) => {
   // const qisNew = req.query.new;
 
-  const { isNew,category } = req.query;
+  const { isNew, category } = req.query;
 
   try {
     let products;
@@ -117,7 +117,7 @@ export const updateProduct = asyncHandler(async (req, res) => {
     });
 
     if (!product) {
-      return res.status(404).json({ message: "Product not found" });
+      return res.status(404).json({ message: "Product not exists" });
     }
 
     const { name, description, price, category, rating, size, isNew } =
@@ -147,7 +147,7 @@ export const updateProduct = asyncHandler(async (req, res) => {
         category,
         rating: parseFloat(rating),
         size,
-        image: result?.url || null,
+        image: result?.secure_url,
         isNew: isNew === "true" || isNew === true,
       },
     });
