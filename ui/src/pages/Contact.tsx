@@ -83,10 +83,10 @@ export default function ContactPage() {
     <div className="bg-gradient-to-b from-background to-muted/20 min-h-screen">
       <div className="container mx-auto px-4 py-12 md:py-24">
         <div className="text-center mb-12 md:mb-20">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#D4AF37] tracking-tight mb-4">
             Get in Touch
           </h1>
-          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
+          <p className="text-black text-lg md:text-xl max-w-2xl mx-auto">
             We'd love to hear from you. Our team is always here to help and
             answer any questions you may have.
           </p>
@@ -97,32 +97,32 @@ export default function ContactPage() {
           <div className="space-y-8">
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-20 h-20 bg-primary/10 rounded-full z-0"></div>
-              <h2 className="text-2xl md:text-3xl font-bold relative z-10">
+              <h2 className="text-2xl text-[#D4AF37] md:text-3xl font-bold relative z-10">
                 Contact Information
               </h2>
             </div>
 
             <div className="grid gap-6">
               <ContactInfoCard
-                icon={<MapPin className="h-5 w-5 text-primary" />}
+                icon={<MapPin className="h-5 w-5 text-[#D4AF37]" />}
                 title="Our Location"
                 description="123 Business Avenue, Suite 500, San Francisco, CA 94107"
               />
 
               <ContactInfoCard
-                icon={<Phone className="h-5 w-5 text-primary" />}
+                icon={<Phone className="h-5 w-5 text-[#D4AF37]" />}
                 title="Phone Number"
                 description="+1 (555) 123-4567"
               />
 
               <ContactInfoCard
-                icon={<Mail className="h-5 w-5 text-primary" />}
+                icon={<Mail className="h-5 w-5 text-[#D4AF37]" />}
                 title="Email Address"
                 description="contact@yourcompany.com"
               />
 
               <ContactInfoCard
-                icon={<Clock className="h-5 w-5 text-primary" />}
+                icon={<Clock className="text-[#D4AF37] h-5 w-5" />}
                 title="Business Hours"
                 description="Monday - Friday: 9AM - 5PM PST"
               />
@@ -132,22 +132,22 @@ export default function ContactPage() {
               <h3 className="text-lg font-medium mb-4">Follow Us</h3>
               <div className="flex space-x-4">
                 <SocialButton
-                  icon={<Facebook className="h-5 w-5" />}
+                  icon={<Facebook className=" text-[#D4AF37] h-5 w-5" />}
                   href="#"
                   label="Facebook"
                 />
                 <SocialButton
-                  icon={<Twitter className="h-5 w-5" />}
+                  icon={<Twitter className=" text-[#D4AF37] h-5 w-5" />}
                   href="#"
                   label="Twitter"
                 />
                 <SocialButton
-                  icon={<Instagram className="h-5 w-5" />}
+                  icon={<Instagram className="text-[#D4AF37] h-5 w-5" />}
                   href="#"
                   label="Instagram"
                 />
                 <SocialButton
-                  icon={<Linkedin className="h-5 w-5" />}
+                  icon={<Linkedin className="text-[#D4AF37] h-5 w-5" />}
                   href="#"
                   label="LinkedIn"
                 />
@@ -158,9 +158,11 @@ export default function ContactPage() {
           {/* Contact Form */}
           <div>
             <Card className="overflow-hidden border-none shadow-lg">
-              <div className="h-2 bg-primary"></div>
+              <div className="h-2 bg-[#D4AF37]"></div>
               <CardContent className="p-6 md:p-8">
-                <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
+                <h2 className="text-2xl font-bold mb-6 text-[#D4AF37]">
+                  Send Us a Message
+                </h2>
                 <Form {...form}>
                   <form
                     onSubmit={form.handleSubmit(onSubmit)}
@@ -256,7 +258,7 @@ export default function ContactPage() {
                     />
                     <Button
                       type="submit"
-                      className="w-full mt-2 group"
+                      className="w-full bg-[#D4AF37] mt-2 group"
                       size="lg"
                       disabled={isSubmitting}
                     >
@@ -278,7 +280,9 @@ export default function ContactPage() {
 
         {/* Map Section */}
         <div className="mt-16 md:mt-24 max-w-6xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">Find Us</h2>
+          <h2 className="text-2xl md:text-3xl text-[#D4AF37] font-bold mb-6">
+            Find Us
+          </h2>
           <div className="aspect-video w-full rounded-lg overflow-hidden shadow-lg bg-muted/50 relative">
             {/* This would be replaced with an actual map component */}
             <div className="absolute inset-0 flex items-center justify-center">
