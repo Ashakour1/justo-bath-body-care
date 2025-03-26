@@ -8,9 +8,9 @@ const AboutPage = () => {
       {" "}
       <main className="flex flex-col min-h-screen">
         {/* Hero Section */}
-        <section className="relative w-full h-[50vh] md:h-[60vh] bg-neutral-100">
+        <section className="relative w-full h-[50vh] md:h-[60vh] bg-gray-900">
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center p-4 md:p-8 bg-black/20">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+            <h1 className="text-4xl md:text-6xl font-bold text-[#D4AF37] mb-4">
               Our Story
             </h1>
             <p className="text-lg md:text-xl text-white max-w-2xl">
@@ -20,7 +20,7 @@ const AboutPage = () => {
           <img
             src="/image.jpg"
             alt="JUSTO Cosmetics natural ingredients"
-            className="object-cover h-full w-full"
+            className="object-cover h-full w-full opacity-70" // Added opacity-70 class
           />
         </section>
 
@@ -28,7 +28,7 @@ const AboutPage = () => {
         <section className="py-16 md:py-24 px-4 md:px-8 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              <h2 className="text-[#D4AF37] text-3xl md:text-4xl font-bold mb-6">
                 Our Mission
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
@@ -58,15 +58,17 @@ const AboutPage = () => {
         {/* Values Section */}
         <section className="py-16 md:py-24 bg-neutral-50 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+            <h2 className="text-[#D4AF37] text-3xl md:text-4xl font-bold mb-12 text-center">
               Our Values
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                  <Leaf className="w-6 h-6 text-primary" />
+                  <Leaf className="text-[#D4AF37] w-6 h-6 " />
                 </div>
-                <h3 className="text-xl font-semibold mb-4">Natural Beauty</h3>
+                <h3 className="text-xl text-[#D4AF37] font-semibold mb-4">
+                  Natural Beauty
+                </h3>
                 <p className="text-muted-foreground">
                   We're dedicated to harnessing the power of natural ingredients
                   to create products that enhance your natural beauty. Our range
@@ -76,9 +78,9 @@ const AboutPage = () => {
               </div>
               <div className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                  <Heart className="w-6 h-6 text-primary" />
+                  <Heart className="w-6 h-6 text-[#D4AF37]" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4">
+                <h3 className="text-xl text-[#D4AF37] font-semibold mb-4">
                   Quality Partnerships
                 </h3>
                 <p className="text-muted-foreground">
@@ -89,9 +91,9 @@ const AboutPage = () => {
               </div>
               <div className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                  <Users className="w-6 h-6 text-primary" />
+                  <Users className="w-6 h-6 text-[#D4AF37]" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4">
+                <h3 className="text-xl text-[#D4AF37] font-semibold mb-4">
                   Community Empowerment
                 </h3>
                 <p className="text-muted-foreground">
@@ -107,7 +109,7 @@ const AboutPage = () => {
         {/* Community Section */}
         <section className="py-16 md:py-24 bg-neutral-50 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+            <h2 className="text-3xl text-[#D4AF37] md:text-4xl font-bold mb-6 text-center">
               Empowering Our Community
             </h2>
             <p className="text-lg text-muted-foreground mb-12 text-center max-w-3xl mx-auto">
@@ -124,7 +126,7 @@ const AboutPage = () => {
               </div>
               <div>
                 <div className="mb-8">
-                  <h3 className="text-xl font-semibold mb-4">
+                  <h3 className="text-xl text-[#D4AF37] font-semibold mb-4">
                     Creating Opportunities
                   </h3>
                   <p className="text-muted-foreground">
@@ -135,7 +137,7 @@ const AboutPage = () => {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-4">
+                  <h3 className="text-xl text-[#D4AF37] font-semibold mb-4">
                     Community Engagement
                   </h3>
                   <p className="text-muted-foreground">
