@@ -22,10 +22,10 @@ interface CheckoutType {
   phone: string;
   address: string;
   city: string;
-  paymentMethod: "card" | "mpesa";
+  paymentMethod: string
   paymentNumber: string;
   note: string;
-  deliveryDate?: string; // Optional field
+  deliveryDate?: string;
 }
 
 export default function CheckoutPage() {
@@ -52,7 +52,6 @@ export default function CheckoutPage() {
     return null;
   }
 
-  // Redirect to cart if cart is empty
   if (products.length === 0) {
     navigate("/cart");
     return null;
@@ -66,7 +65,12 @@ export default function CheckoutPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Basic validation
+    // Don't proceed if credit card is selected (for now)
+    if (formData.paymentMethod === "card") {
+      toast.error("Credit card payments are coming soon. Please use M-Pesa.");
+      return;
+    }
+
     if (
       !formData.name ||
       !formData.email ||
@@ -78,31 +82,26 @@ export default function CheckoutPage() {
       return;
     }
 
-    // Prepare order data to match backend structure
     const orderData = {
       total: totalPrice,
       paymentMethod: formData.paymentMethod,
       paymentNumber: formData.paymentNumber,
       orderItem: products.map((item) => ({
-        product_id: item.id, // Match backend's expected field name
+        product_id: item.id,
         quantity: item.quantity,
       })),
       shipping: {
-        // Ensure the key is "shipping" (lowercase)
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
         address: formData.address,
         city: formData.city,
-        schedule: formData.deliveryDate || null, // Optional field
-        note: formData.note || "", // Optional field
+        schedule: formData.deliveryDate || null,
+        note: formData.note || "",
       },
     };
 
-    console.log("Order Data:", JSON.stringify(orderData, null, 2)); // Debugging
-
     try {
-      // Send order data to the API
       const response = await axios.post(
         "https://justo-bath-body-care-siem.vercel.app/api/orders/create",
         orderData
@@ -111,12 +110,6 @@ export default function CheckoutPage() {
       if (response.status === 201) {
         toast.success("Order placed successfully");
 
-        // console.log(response.data.order.id);
-        // const orderId = response.data.order.id;
-
-        // const invoiceUrl = `${window.location.origin}/invoice/${orderId}`;
-
-        // Generate WhatsApp message
         const productsMessage = products
           .map(
             (item) =>
@@ -137,42 +130,10 @@ export default function CheckoutPage() {
         )}\n\nNote: ${formData.note}`;
 
         const phoneNumber = "252616590033";
-        // Encode the message for WhatsApp URL
         const encodedMessage = encodeURIComponent(message);
-
-        // Open WhatsApp with the pre-filled message
         const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
 
         window.open(whatsappUrl, "_blank");
-
-        // navigate(`/invoice/${orderId}`, {
-        //   state: {
-        //     orderDetails: products,
-        //     customerDetails: {
-        //       name: formData.name,
-        //       email: formData.email,
-        //       phone: formData.phone,
-        //       address: formData.address,
-        //       city: formData.city,
-        //     },
-        //     totalPrice,
-        //     orderId, // Pass the order ID to the invoice page
-        //   },
-        // });
-        // Navigate to Invoice Page
-        // navigate("/invoice", {
-        //   state: {
-        //     orderDetails: products,
-        //     customerDetails: {
-        //       name: formData.name,
-        //       email: formData.email,
-        //       phone: formData.phone,
-        //       address: formData.address,
-        //       city: formData.city,
-        //     },
-        //     totalPrice,
-        //   },
-        // });
 
         setFormData({
           name: "",
@@ -227,7 +188,9 @@ export default function CheckoutPage() {
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to cart
         </Link>
-        <h1 className="text-2xl font-normal">Delivery Information</h1>
+        <h1 className="text-2xl font-semibold text-[#D4AF37]">
+          Delivery Information
+        </h1>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-12">
@@ -282,8 +245,6 @@ export default function CheckoutPage() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="Nairobi">Nairobi</SelectItem>
-                    {/* <SelectItem value="Mombasa">Mombasa</SelectItem>
-                    <SelectItem value="Kisumu">Kisumu</SelectItem> */}
                   </SelectContent>
                 </Select>
               </div>
@@ -315,7 +276,7 @@ export default function CheckoutPage() {
                   }))
                 }
                 className={`w-12 h-6 rounded-full transition-colors ${
-                  formData.deliveryDate ? "bg-black" : "bg-gray-200"
+                  formData.deliveryDate ? "bg-[#D4AF37]" : "bg-gray-200"
                 }`}
               >
                 <div
@@ -359,7 +320,7 @@ export default function CheckoutPage() {
               onValueChange={handleRadioChange}
               className="grid grid-cols-2 gap-4"
             >
-              <div className="flex items-center space-x-2 border rounded-lg p-4 cursor-pointer [&:has(:checked)]:border-black">
+              <div className="flex items-center space-x-2 border rounded-lg p-4 cursor-pointer [&:has(:checked)]:border-[#D4AF37]">
                 <RadioGroupItem value="card" id="card" />
                 <Label
                   htmlFor="card"
@@ -369,7 +330,7 @@ export default function CheckoutPage() {
                   Credit Card (Coming soon)
                 </Label>
               </div>
-              <div className="flex items-center space-x-2 border rounded-lg p-4 cursor-pointer [&:has(:checked)]:border-black">
+              <div className="flex items-center space-x-2 border rounded-lg p-4 cursor-pointer [&:has(:checked)]:border-[#D4AF37]">
                 <RadioGroupItem value="mpesa" id="mpesa" />
                 <Label
                   htmlFor="mpesa"
@@ -395,6 +356,32 @@ export default function CheckoutPage() {
                 />
               </div>
             )}
+
+            {formData.paymentMethod === "card" && (
+              <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <svg
+                      className="h-5 w-5 text-yellow-400"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-sm text-yellow-700">
+                      Credit card payments are coming soon. Please select M-Pesa
+                      for now.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="text-sm text-gray-500">
@@ -408,14 +395,19 @@ export default function CheckoutPage() {
           <Button
             type="submit"
             className="w-full bg-black hover:bg-gray-900 text-white h-12"
+            disabled={formData.paymentMethod === "card"}
           >
-            Confirm Order
+            {formData.paymentMethod === "card"
+              ? "Coming Soon"
+              : "Confirm Order"}
           </Button>
         </form>
 
         <div>
-          <div className="bg-white p-6 rounded-lg">
-            <h2 className="text-lg font-medium mb-4">Order Summary</h2>
+          <div className="bg-white p-6 rounded-lg border border-[#D4AF37]">
+            <h2 className="text-lg font-semibold mb-4 text-[#D4AF37]">
+              Order Summary
+            </h2>
 
             <div className="space-y-4 max-h-[300px] overflow-y-auto">
               {products.map((item) => (
@@ -449,18 +441,14 @@ export default function CheckoutPage() {
             <div className="space-y-3 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-500">Subtotal</span>
-                <span>${totalPrice.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-500">Shipping</span>
-                <span>Free</span>
+                <span>Ksh{totalPrice.toFixed(2)}</span>
               </div>
 
               <div className="h-px bg-gray-100 my-4" />
 
               <div className="flex justify-between text-base font-medium">
                 <span>Total</span>
-                <span>${totalPrice.toFixed(2)}</span>
+                <span>Ksh{totalPrice.toFixed(2)}</span>
               </div>
             </div>
           </div>
