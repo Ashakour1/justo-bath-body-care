@@ -64,7 +64,7 @@ const Products = ({}) => {
                     Back to Home
                   </Link>
                 </p>
-                <h1 className="text-2xl font-semibold capitalize">
+                <h1 className="text-2xl text-[#D4AF37] font-semibold capitalize">
                   {category || "SHOP ALL PRODUCTS"}
                 </h1>
                 <p className="font-medium text-sm Capitalize text-gray-700">
