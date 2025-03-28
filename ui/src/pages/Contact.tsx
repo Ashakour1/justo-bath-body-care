@@ -106,19 +106,19 @@ export default function ContactPage() {
               <ContactInfoCard
                 icon={<MapPin className="h-5 w-5 text-[#D4AF37]" />}
                 title="Our Location"
-                description="123 Business Avenue, Suite 500, San Francisco, CA 94107"
+                description="Nairobi, Kilimani, Ring Rd road"
               />
 
               <ContactInfoCard
                 icon={<Phone className="h-5 w-5 text-[#D4AF37]" />}
                 title="Phone Number"
-                description="+1 (555) 123-4567"
+                description="+2540790736909"
               />
 
               <ContactInfoCard
                 icon={<Mail className="h-5 w-5 text-[#D4AF37]" />}
                 title="Email Address"
-                description="contact@yourcompany.com"
+                description="Justokilimani@gmail.com"
               />
 
               <ContactInfoCard

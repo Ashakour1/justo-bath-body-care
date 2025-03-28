@@ -22,7 +22,7 @@ interface CheckoutType {
   phone: string;
   address: string;
   city: string;
-  paymentMethod: string
+  paymentMethod: string;
   paymentNumber: string;
   note: string;
   deliveryDate?: string;
@@ -129,7 +129,7 @@ export default function CheckoutPage() {
           2
         )}\n\nNote: ${formData.note}`;
 
-        const phoneNumber = "252616590033";
+        const phoneNumber = "2540790736909";
         const encodedMessage = encodeURIComponent(message);
         const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
 

@@ -9,7 +9,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold">Contact Info</h3>
             <div className="flex items-center gap-2">
               <Phone className="h-4 w-4 D4AF37" />
-              <span>079073690</span>
+              <span>0790736909</span>
             </div>
             <div className="flex items-start gap-2">
               <MapPin className="h-4 w-4 D4AF37 mt-1" />
