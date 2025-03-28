@@ -113,7 +113,7 @@ const HeroSection = () => {
               transition={{ duration: 0.5 }}
             >
               <motion.img
-                src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=2070&auto=format&fit=crop"
+                src="product0.jpg"
                 alt="Skincare products"
                 className="object-cover rounded-md w-full h-full"
                 // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
