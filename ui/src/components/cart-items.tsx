@@ -1,13 +1,13 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Minus, Plus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-// import { useCart } from "@/components/cart-provider";
 import toast from "react-hot-toast";
 import { useCart } from "@/features/useCart";
 
 export default function CartPage() {
-  // const { cart, removeFromCart, updateQuantity } = useCart();
   const [mounted, setMounted] = useState(false);
   const navigate = useNavigate();
 
@@ -27,11 +27,6 @@ export default function CartPage() {
     return null;
   }
 
-  // const totalPrice = cart.reduce(
-  //   (total, item) => total + item.price * item.quantity,
-  //   0
-  // );
-
   const handleCheckout = () => {
     if (products.length === 0) {
       toast.error("Your cart is empty");
@@ -41,9 +36,9 @@ export default function CartPage() {
   };
 
   return (
-    <div className="max-w-[1200px] h-[600px] mx-auto px-4 py-12">
-      <div className="flex justify-between items-center mb-8 pb-6 border-b border-yellow-500">
-        <h1 className="text-2xl font-semibold text-[#D4AF37] ">
+    <div className="max-w-[1200px] h-full mx-auto px-4 py-8 md:py-12">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 pb-4 border-b border-yellow-500">
+        <h1 className="text-xl sm:text-2xl font-semibold text-[#D4AF37] mb-2 sm:mb-0">
           Shopping Cart
         </h1>
         <Link to="/shop" className="text-sm text-gray-500 hover:text-gray-900">
@@ -52,18 +47,22 @@ export default function CartPage() {
       </div>
 
       {products.length === 0 ? (
-        <div className="text-center py-16">
-          <p className="text-gray-700 mb-8">Your cart is empty</p>
+        <div className="text-center py-12 md:py-16">
+          <p className="text-gray-700 mb-6 md:mb-8">Your cart is empty</p>
           <Link to="/">
-            <Button variant="outline" className="bg-[#D4AF37] text-white px-8">
+            <Button
+              variant="outline"
+              className="bg-[#D4AF37] text-white px-6 md:px-8"
+            >
               Start Shopping
             </Button>
           </Link>
         </div>
       ) : (
-        <div className="grid lg:grid-cols-3 gap-12">
-          <div className="lg:col-span-2">
-            <div className="grid grid-cols-12 text-sm text-gray-500 mb-4 px-4">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-12">
+          <div className="md:col-span-2">
+            {/* Header - Hidden on mobile */}
+            <div className="hidden md:grid grid-cols-12 text-sm text-gray-500 mb-4 px-4">
               <div className="col-span-6">Product</div>
               <div className="col-span-2 text-center">Size</div>
               <div className="col-span-2 text-center">Quantity</div>
@@ -74,9 +73,56 @@ export default function CartPage() {
               {products.map((item) => (
                 <div
                   key={item.id}
-                  className="grid grid-cols-12 items-center bg-white p-4 rounded-lg"
+                  className="grid grid-cols-1 md:grid-cols-12 items-center bg-white p-4 rounded-lg"
                 >
-                  <div className="col-span-6 flex gap-4">
+                  {/* Mobile Layout */}
+                  <div className="md:hidden grid grid-cols-3 gap-3 mb-3">
+                    <div className="col-span-1">
+                      <div className="w-full aspect-square bg-gray-50 rounded-md overflow-hidden">
+                        <img
+                          src={item.image || "/placeholder.svg"}
+                          alt={item.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-span-2">
+                      <div className="flex justify-between">
+                        <h3 className="font-medium">{item.name}</h3>
+                        <button
+                          onClick={() => RemoveCart(item.id)}
+                          className="text-gray-400 hover:text-gray-600"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                      <p className="text-sm text-gray-500">{item.category}</p>
+                      <div className="flex justify-between items-center mt-2">
+                        <span className="text-sm">Size: {item.size}</span>
+                        <span className="font-medium">
+                          {(item.price * item.quantity).toFixed(2)} Ksh
+                        </span>
+                      </div>
+                      <div className="flex items-center mt-3">
+                        <button
+                          onClick={() => DecrementQuantity(item.id)}
+                          className="w-7 h-7 flex items-center justify-center rounded-full border hover:bg-gray-50"
+                        >
+                          <Minus className="w-3 h-3" />
+                        </button>
+                        <span className="w-8 text-center">{item.quantity}</span>
+                        <button
+                          onClick={() => IncrementQuantity(item.id)}
+                          className="w-7 h-7 flex items-center justify-center rounded-full border hover:bg-gray-50"
+                        >
+                          <Plus className="w-3 h-3" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Desktop Layout */}
+                  <div className="hidden md:flex md:col-span-6 gap-4">
                     <div className="w-20 h-20 bg-gray-50 rounded-md overflow-hidden">
                       <img
                         src={item.image || "/placeholder.svg"}
@@ -92,11 +138,11 @@ export default function CartPage() {
                     </div>
                   </div>
 
-                  <div className="col-span-2 text-center">
+                  <div className="hidden md:block md:col-span-2 text-center">
                     <span className="text-sm">{item.size}</span>
                   </div>
 
-                  <div className="col-span-2">
+                  <div className="hidden md:block md:col-span-2">
                     <div className="flex items-center justify-center gap-3">
                       <button
                         onClick={() => DecrementQuantity(item.id)}
@@ -114,7 +160,7 @@ export default function CartPage() {
                     </div>
                   </div>
 
-                  <div className="col-span-2 flex items-center justify-end gap-4">
+                  <div className="hidden md:flex md:col-span-2 items-center justify-end gap-4">
                     <span className="font-medium">
                       {(item.price * item.quantity).toFixed(2)} Ksh
                     </span>
@@ -130,8 +176,8 @@ export default function CartPage() {
             </div>
           </div>
 
-          <div>
-            <div className="bg-white p-6 rounded-lg">
+          <div className="mt-6 md:mt-0">
+            <div className="bg-white p-5 md:p-6 rounded-lg">
               <h2 className="text-lg font-medium mb-4">Order Summary</h2>
 
               <div className="space-y-3 text-sm">
