@@ -31,7 +31,7 @@ const Sidebar = () => {
     <div className="flex h-screen bg-gray-100">
       <aside className="hidden w-[200px] flex-col border-r md:flex">
         <div className="p-4 flex items-center justify-center">
-          <img src="/login-image.jpg" alt="logo.png" className="w-20 " />
+          <img src="/logo.png" alt="logo.png" className="w-20 pt-10 " />
         </div>
         <nav className="flex-1 flex flex-col gap-1 p-4">
           {navItems.map(({ to, label, icon }) => (
