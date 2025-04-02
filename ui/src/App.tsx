@@ -13,6 +13,7 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/Contact";
 import HomePage from "./pages/HomePage";
 import Products from "./pages/ProductsPage";
+import ProductsWithFiltering from "./pages/ProductsWithFilter";
 function App() {
   return (
     <>
@@ -23,20 +24,20 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/shop/collection/:category" element={<Products />} />
-          <Route path="/shop/:category" element={<Products />} />
+          <Route path="/shop/:category" element={<ProductsWithFiltering />} />
           {/* <Route path="/shop/collection/:collection" element={<Products />} /> */}
           <Route path="/shop/" element={<Products />} />
           {/* <Route path="/shop/:id" element={<ProductDetail />} /> */}
           <Route path="/shop/*" element={<NotFound />} />
           <Route path="/about/our-philosophy" element={<OurPhilosophy />} />
           <Route path="/cart" element={<CartPage />} />
-         
+
           <Route path="/checkout" element={<CheckoutPage />} />
           {/* <Route path="/invoice/:id" element={<InvoicePage />} /> */}
           {/* <Route path="/products/:category" element={<ProductsCat />} />
           <Route path="/products/" element={<ProductsPage />} />
           <Route path="/products/isNew" element={<ProductsNew />} /> */}
-         
+
           <Route path="/about/" element={<AboutPage />} />
           <Route path="/contact/" element={<ContactPage />} />
         </Routes>
