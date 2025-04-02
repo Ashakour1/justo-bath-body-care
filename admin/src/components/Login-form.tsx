@@ -73,9 +73,9 @@ const LoginForm = () => {
         <div className="flex flex-col gap-6">
           <div className="flex flex-col items-center gap-2">
             <img
-              src="/login-image.jpg"
+              src="/logo.png"
               alt="Logo"
-              className="rounded-full w-16 h-16"
+              className="rounded-full w-28 h-16"
             />
             <h1 className="text-xl font-bold">Login</h1>
             <p className="text-lg text-center text-muted-foreground">
