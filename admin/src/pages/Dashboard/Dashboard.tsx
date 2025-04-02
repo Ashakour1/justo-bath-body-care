@@ -24,6 +24,7 @@ export function DashboardPage() {
   }
   interface Order {
     total: number;
+    paymentStatus: string;
     // add other properties of Order if needed
   }
 
@@ -62,7 +63,9 @@ export function DashboardPage() {
 
   const TotalProducts = products.length;
   const TotalOrders = orders.length;
-  const TotalSales = orders.reduce((acc, order) => acc + order.total, 0);
+  const TotalSales = orders
+    .filter((order) => order.paymentStatus === "Paid")
+    .reduce((acc, order) => acc + order.total, 0);
   const inStockProducts = products.filter((product) => product.inStock);
 
   return (
@@ -109,7 +112,7 @@ export function DashboardPage() {
                     {index === 2 &&
                       TotalSales.toLocaleString("en-US", {
                         style: "currency",
-                        currency: "USD",
+                        currency: "ksh",
                       })}
                     {index === 3 && inStockProducts.length}
                   </div>
