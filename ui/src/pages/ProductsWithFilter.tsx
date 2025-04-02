@@ -41,13 +41,13 @@ const ProductsWithFiltering = () => {
   const [hasActiveFilters, setHasActiveFilters] = useState(false);
 
   // Product types and sizes based on the image
-  const productTypes = [
-    "All Types",
-    "Shower Gel",
-    "Body Scrub",
-    "Fragrance",
-    "Lotion",
-  ];
+  // const productTypes = [
+  //   "All Types",
+  //   "Shower Gel",
+  //   "Body Scrub",
+  //   "Fragrance",
+  //   "Lotion",
+  // ];
   const productSizes = ["All Sizes", "50ml", "100ml", "200ml", "300ml"];
   const priceRanges = [
     "All Prices",
@@ -292,24 +292,7 @@ const ProductsWithFiltering = () => {
               {/* Left side - Filters */}
               <div className="flex flex-wrap gap-3 mb-3 md:mb-0">
                 {/* Product Type Filter - Only show if no category is specified */}
-                {!category && (
-                  <Select
-                    value={selectedType || ""}
-                    onValueChange={setSelectedType}
-                  >
-                    <SelectTrigger className="w-[140px] h-9">
-                      <ShirtIcon className="h-4 w-4 mr-2" />
-                      <SelectValue placeholder="Product Type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {productTypes.map((type) => (
-                        <SelectItem key={type} value={type}>
-                          {type}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                )}
+              
 
                 {/* Size Filter - Always show */}
                 <Select
