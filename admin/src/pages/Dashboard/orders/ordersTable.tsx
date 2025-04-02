@@ -91,8 +91,10 @@ export const OrderTable = () => {
         <div className="p-6">
           <div className=" flex justify-between ">
             <div className="flex flex-col space-y-2">
-              <h1 className="text-xl font-bold">Products Lists</h1>
-              <p className="">List of all products available in the store</p>
+              <h1 className="text-xl font-bold">Orders Lists</h1>
+              <p className="">
+                Here you can manage all the orders placed by customers.
+              </p>
             </div>
           </div>
           <div className="border shadow-sm rounded-lg p-2 mt-5">
@@ -127,7 +129,7 @@ export const OrderTable = () => {
                     </TableCell>
 
                     <TableCell>{order.OrderItem?.[0]?.quantity || 0}</TableCell>
-                    <TableCell>${order.total}</TableCell>
+                    <TableCell>ksh {order.total}</TableCell>
                     <TableCell>{order.paymentMethod}</TableCell>
                     <TableCell>
                       <Badge className="text-xs" variant="outline">
