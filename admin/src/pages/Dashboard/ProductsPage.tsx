@@ -100,7 +100,7 @@ export const ProductTable = () => {
                 <TableRow>
                   <TableHead className="w-[100px]">Name</TableHead>
                   <TableHead className="hidden sm:table-cell">Image</TableHead>
-                  <TableHead className="min-w-[150px]">Description</TableHead>
+                  {/* <TableHead className="min-w-[150px]">Description</TableHead> */}
                   <TableHead className="hidden md:table-cell">
                     Category
                   </TableHead>
@@ -122,9 +122,9 @@ export const ProductTable = () => {
                         className="w-10 h-10 object-cover rounded-md"
                       />
                     </TableCell>
-                    <TableCell className="min-w-[150px]">
+                    {/* <TableCell className="min-w-[150px]">
                       {product.description}
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell className="hidden md:table-cell">
                       {product.category}
                     </TableCell>
