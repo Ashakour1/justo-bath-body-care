@@ -286,17 +286,15 @@ export default function ContactPage() {
           <div className="aspect-video w-full rounded-lg overflow-hidden shadow-lg bg-muted/50 relative">
             {/* This would be replaced with an actual map component */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <img
-                src="/placeholder.svg?height=600&width=1200"
-                alt="Map location"
-                className="w-full h-full object-cover"
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.799092671194!2d36.7880667!3d-1.2951078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f112a7ff328f7%3A0x33f5f28881a84cbd!2sKilimani%20Shujah%20Mall!5e0!3m2!1sen!2sso!4v1744043718065!5m2!1sen!2sso"
+                className="w-full h-full"
+                height="450"
+                style={{ border: 0 }} // ✅ fixed this line
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
               />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Button size="lg">
-                  View on Google Maps
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
             </div>
           </div>
         </div>
