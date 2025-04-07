@@ -55,7 +55,7 @@ const Product = ({ product }: ProductProps) => {
         <img
           src={product.image || "/placeholder.svg"}
           alt={product.name}
-          className="object-cover w-full h-[230px] transition-transform duration-700 group-hover:scale-105"
+          className="object-cover w-full h-[340px] transition-transform duration-700 group-hover:scale-105"
         />
       </div>
 
