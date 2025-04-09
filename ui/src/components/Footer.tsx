@@ -51,7 +51,16 @@ const Footer = () => {
         </div>
         <div className="mt-8 border-t pt-6">
           <p className="text-center text-sm D4AF37">
-            © 2025 Justo Kilimani. All rights reserved.
+            &copy; 2023 Justo Cosmetic. All rights reserved.
+          </p>
+          <p className="text-center text-sm D4AF37">
+            Designed by{" "}
+            <a
+              href="https://www.linkedin.com/in/justo-nyamita-1b9b4b1a3/"
+              className="font-semibold hover:underline"
+            >
+              Justo Nyamita
+            </a>
           </p>
         </div>
       </div>
