@@ -49,7 +49,7 @@ const Header = () => {
         isScrolled ? "shadow-md" : "border-b"
       }`}
     >
-      <div className="container px-4 mx-auto">
+      <div className="md:max-w-[1300px] container lg:container px-4 mx-auto">
         <div className="relative flex items-center justify-between py-4">
           <Button
             variant="ghost"
