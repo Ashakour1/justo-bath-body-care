@@ -129,12 +129,14 @@ export default function CheckoutPage() {
           2
         )}\n\nNote: ${formData.note}`;
 
-        const phoneNumber = "2540790736909";
+        const phoneNumber = "252616590033";
         const encodedMessage = encodeURIComponent(message);
         const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
 
-        window.open(whatsappUrl, "_blank");
+        // Open the WhatsApp URL using window.location.href for mobile compatibility
+        window.location.href = whatsappUrl;
 
+        // Reset form data
         setFormData({
           name: "",
           email: "",
