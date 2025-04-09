@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/features/useCart";
 import type { ProductType } from "@/types/product.t";
 import { ShoppingBag, Star } from "lucide-react";
+import toast from "react-hot-toast";
 
 type ProductProps = {
   product: ProductType;
@@ -15,7 +16,11 @@ const Product = ({ product }: ProductProps) => {
   // const [isHovered, setIsHovered] = useState(false);
 
   const handleAddToCart = () => {
+    // Check if the product is already in the cart
+
     AddCart({ ...product, quantity: 1 });
+    // console.log("Product added to cart:", product);
+    toast.success("Product added to cart!");
   };
 
   // Generate star rating

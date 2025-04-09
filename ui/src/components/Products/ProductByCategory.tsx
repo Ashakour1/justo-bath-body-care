@@ -126,9 +126,11 @@ export default function ProductCategories({}: ProductCategoriesProps) {
                   </div>
                 ) : categoryProducts[category.id]?.length > 0 ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                    {categoryProducts[category.id].map((product) => (
-                      <Product key={product.id} product={product} />
-                    ))}
+                    {categoryProducts[category.id]
+                      .slice(0, 5)
+                      .map((product) => (
+                        <Product key={product.id} product={product} />
+                      ))}
                   </div>
                 ) : (
                   <div className="text-center py-12">
