@@ -121,7 +121,7 @@ export default function CheckoutPage() {
           )
           .join("\n");
 
-        const message = `New Order Received!\n\nCustomer Details:\nName: ${
+        const message = `*New Order Received!*\n\nCustomer Details:\nName: ${
           formData.name
         }\nEmail: ${formData.email}\nPhone: ${formData.phone}\nAddress: ${
           formData.address
