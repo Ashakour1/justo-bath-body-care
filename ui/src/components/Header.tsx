@@ -1,8 +1,10 @@
 "use client";
 
-import { ChevronDown, Menu, ShoppingBag } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { ChevronDown, Menu, ShoppingBag, X } from "lucide-react";
+import type React from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -16,15 +18,16 @@ import { useCart } from "@/features/useCart";
 interface NavItemProps {
   href: string;
   children: React.ReactNode;
+  onClick?: () => void;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ href, children }) => (
+const NavItem: React.FC<NavItemProps> = ({ href, children, onClick }) => (
   <Link
     to={href}
-    className="text-sm font-medium text-gray-700 transition-colors hover:text-primary relative group"
+    className="text-sm font-medium text-gray-700 hover:text-primary"
+    onClick={onClick}
   >
     {children}
-    <span className="absolute inset-x-0 bottom-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
   </Link>
 );
 
@@ -34,7 +37,6 @@ const Header = () => {
 
   const { products } = useCart();
 
-  // const { cart } = useCart();
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -43,111 +45,241 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
-    <header
-      className={`sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-300 ${
-        isScrolled ? "shadow-md" : "border-b"
+    <motion.header
+      className={`sticky top-0 z-50 w-full bg-white ${
+        isScrolled ? "border-b" : ""
       }`}
+      animate={{
+        boxShadow: isScrolled
+          ? "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+          : "none",
+      }}
+      transition={{ duration: 0.3 }}
     >
-      <div className="md:max-w-[1300px] container lg:container px-4 mx-auto">
-        <div className="relative flex items-center justify-between py-4">
+      <div className="container px-4 mx-auto">
+        <div className="flex items-center justify-between py-4">
+          {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="icon"
             className="md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <Menu className="h-5 w-5" />
-            <span className="sr-only">Menu</span>
+            <AnimatePresence mode="wait" initial={false}>
+              {isMobileMenuOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X className="h-5 w-5" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu className="h-5 w-5" />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </Button>
 
-          <Link to="/" className="flex items-center space-x-2">
-            <span className="font-serif text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-foreground text-[#D4AF37]">
-              <img src="/logo.png" className="w-32" alt="" />
-            </span>
+          {/* Logo */}
+          <Link to="/" className="flex items-center" onClick={closeMobileMenu}>
+            <img src="/logo.png" className="w-32" alt="Logo" />
           </Link>
 
-          <nav
-            className={`absolute md:relative top-full left-0 right-0 bg-background md:bg-transparent  ${
-              isMobileMenuOpen ? "block" : "hidden"
-            } md:block`}
-          >
-            <ul className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0  md:space-x-8 p-4 md:p-0">
-              <li className="text-gray-800">
-                <NavItem href="/Shop/Justo cosmetics">Justo products</NavItem>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:block">
+            <ul className="flex items-center space-x-6">
+              <li>
+                <NavItem href="/Shop/Justo cosmetics" onClick={closeMobileMenu}>
+                  Justo products
+                </NavItem>
               </li>
-              <li className="text-black">
-                <NavItem href="/Shop">Shop All</NavItem>
+              <li>
+                <NavItem href="/Shop" onClick={closeMobileMenu}>
+                  Shop All
+                </NavItem>
               </li>
               <li>
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="flex items-center text-sm font-medium text-gray-700 transition-colors hover:text-primary">
+                  <DropdownMenuTrigger className="flex items-center text-sm font-medium text-gray-700 hover:text-primary">
                     Collections <ChevronDown className="ml-1 h-4 w-4" />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    <DropdownMenuItem>
-                      <Link to="/Shop/collection/Justo cosmetics">
-                        Justo Products{" "}
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to="/Shop/collection/Justo cosmetics"
+                        onClick={closeMobileMenu}
+                      >
+                        Justo Products
                       </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Link to="/Shop/collection/Rituals">Rituals</Link>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to="/Shop/collection/Rituals"
+                        onClick={closeMobileMenu}
+                      >
+                        Rituals
+                      </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Link to="/Shop/collection/Bath and body Works">
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to="/Shop/collection/Bath and body Works"
+                        onClick={closeMobileMenu}
+                      >
                         Bath & Body Works
                       </Link>
                     </DropdownMenuItem>
-
-                    <DropdownMenuItem>
-                      <Link to="/Shop/collection/Perfumes">Perfumes</Link>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to="/Shop/collection/Perfumes"
+                        onClick={closeMobileMenu}
+                      >
+                        Perfumes
+                      </Link>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </li>
               <li>
-                <NavItem href="/about">About</NavItem>
+                <NavItem href="/about" onClick={closeMobileMenu}>
+                  About
+                </NavItem>
               </li>
               <li>
-                <NavItem href="/contact">Contact</NavItem>
+                <NavItem href="/contact" onClick={closeMobileMenu}>
+                  Contact
+                </NavItem>
               </li>
             </ul>
           </nav>
 
-          <div className="flex items-center space-x-4">
-            {/* <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Globe className="h-5 w-5" />
-                  <span className="sr-only">Language</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>English</DropdownMenuItem>
-                <DropdownMenuItem>Français</DropdownMenuItem>
-                <DropdownMenuItem>Español</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            <Button variant="ghost" size="icon">
-              <Search className="h-5 w-5" />
-              <span className="sr-only">Search</span>
-            </Button> */}
-
-            {/* Updated Cart Link */}
-            <Link to="/cart">
-              <Button variant="ghost" size="icon" className="relative">
-                <ShoppingBag className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">
+          {/* Shopping Cart */}
+          <Link
+            to="/cart"
+            className="flex items-center"
+            onClick={closeMobileMenu}
+          >
+            <Button variant="ghost" size="icon" className="relative">
+              <ShoppingBag className="h-5 w-5" />
+              {products.length > 0 && (
+                <motion.span
+                  className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                >
                   {products.length}
-                </span>
-                <span className="sr-only">Shopping cart</span>
-              </Button>
-            </Link>
-          </div>
+                </motion.span>
+              )}
+            </Button>
+          </Link>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              className="md:hidden border-t"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <ul className="py-2">
+                <li className="py-2 px-4">
+                  <NavItem
+                    href="/Shop/Justo cosmetics"
+                    onClick={closeMobileMenu}
+                  >
+                    Justo products
+                  </NavItem>
+                </li>
+                <li className="py-2 px-4">
+                  <NavItem href="/Shop" onClick={closeMobileMenu}>
+                    Shop All
+                  </NavItem>
+                </li>
+                <li className="py-2 px-4">
+                  <details className="group">
+                    <summary className="flex items-center justify-between cursor-pointer text-sm font-medium text-gray-700">
+                      Collections
+                      <ChevronDown className="h-4 w-4 transition-transform duration-200 group-open:rotate-180" />
+                    </summary>
+                    <motion.ul
+                      className="pl-4 mt-2 space-y-2"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <li className="py-1">
+                        <Link
+                          to="/Shop/collection/Justo cosmetics"
+                          className="text-sm text-gray-600"
+                          onClick={closeMobileMenu}
+                        >
+                          Justo Products
+                        </Link>
+                      </li>
+                      <li className="py-1">
+                        <Link
+                          to="/Shop/collection/Rituals"
+                          className="text-sm text-gray-600"
+                          onClick={closeMobileMenu}
+                        >
+                          Rituals
+                        </Link>
+                      </li>
+                      <li className="py-1">
+                        <Link
+                          to="/Shop/collection/Bath and body Works"
+                          className="text-sm text-gray-600"
+                          onClick={closeMobileMenu}
+                        >
+                          Bath & Body Works
+                        </Link>
+                      </li>
+                      <li className="py-1">
+                        <Link
+                          to="/Shop/collection/Perfumes"
+                          className="text-sm text-gray-600"
+                          onClick={closeMobileMenu}
+                        >
+                          Perfumes
+                        </Link>
+                      </li>
+                    </motion.ul>
+                  </details>
+                </li>
+                <li className="py-2 px-4">
+                  <NavItem href="/about" onClick={closeMobileMenu}>
+                    About
+                  </NavItem>
+                </li>
+                <li className="py-2 px-4">
+                  <NavItem href="/contact" onClick={closeMobileMenu}>
+                    Contact
+                  </NavItem>
+                </li>
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </header>
+    </motion.header>
   );
 };
 
