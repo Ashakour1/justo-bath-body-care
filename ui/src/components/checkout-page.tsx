@@ -31,6 +31,7 @@ interface CheckoutType {
 export default function CheckoutPage() {
   const { products } = useCart();
   const [mounted, setMounted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState<CheckoutType>({
@@ -64,6 +65,7 @@ export default function CheckoutPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
     // Don't proceed if credit card is selected (for now)
     if (formData.paymentMethod === "card") {
@@ -123,11 +125,11 @@ export default function CheckoutPage() {
           formData.name
         }\nEmail: ${formData.email}\nPhone: ${formData.phone}\nAddress: ${
           formData.address
-        }, ${
-          formData.city
-        }\nOrder Details:\n${productsMessage}\nTotal: Ksh${totalPrice.toFixed(
+        }, ${formData.city}\nNote: ${
+          formData.note
+        } \n\nOrder Details:\n${productsMessage}\nTotal: Ksh${totalPrice.toFixed(
           2
-        )}\n\nNote: ${formData.note}`;
+        )}`;
 
         const phoneNumber = "+254790736909";
         const encodedMessage = encodeURIComponent(message);
@@ -150,7 +152,9 @@ export default function CheckoutPage() {
       } else {
         toast.error("Failed to place order. Please try again.");
       }
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.error("Error placing order:", error);
       toast.error("Failed to place order. Please try again.");
     }
@@ -396,12 +400,38 @@ export default function CheckoutPage() {
 
           <Button
             type="submit"
-            className="w-full bg-black hover:bg-gray-900 text-white h-12"
-            disabled={formData.paymentMethod === "card"}
+            className="w-full bg-black hover:bg-gray-900 text-white h-12 flex items-center justify-center gap-2"
+            disabled={formData.paymentMethod === "card" || loading}
           >
-            {formData.paymentMethod === "card"
-              ? "Coming Soon"
-              : "Confirm Order"}
+            {formData.paymentMethod === "card" ? (
+              "Coming Soon"
+            ) : loading ? (
+              <>
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                  ></path>
+                </svg>
+                Processing...
+              </>
+            ) : (
+              "Confirm Order"
+            )}
           </Button>
         </form>
 
