@@ -85,7 +85,7 @@ const ProductDetail = () => {
       <Star
         key={i}
         className={cn(
-          "w-4 h-4",
+          "w-3 h-3 sm:w-4 sm:h-4",
           i < Math.floor(rating)
             ? "fill-yellow-400 text-yellow-400"
             : "fill-gray-200 text-gray-200"
@@ -111,9 +111,12 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className="container mx-auto h-[700px] px-4 py-8 max-w-6xl">
-      {/* Breadcrumb */}
-      <nav className="mb-8 text-sm" aria-label="Breadcrumb">
+    <div className="container mx-auto px-4 py-6 sm:py-8 md:py-12 max-w-6xl">
+      {/* Breadcrumb - hidden on smallest screens */}
+      <nav
+        className="mb-4 sm:mb-6 md:mb-8 text-xs sm:text-sm hidden sm:block"
+        aria-label="Breadcrumb"
+      >
         <ol className="flex items-center space-x-2">
           <li>
             <Link
@@ -140,31 +143,31 @@ const ProductDetail = () => {
               className="h-3 w-3 text-gray-400 mx-1"
               aria-hidden="true"
             />
-            <span className="text-gray-900 font-medium">
+            <span className="text-gray-900 font-medium truncate max-w-[150px]">
               {product.name || "Product Details"}
             </span>
           </li>
         </ol>
       </nav>
 
-      <div className="grid md:grid-cols-2 gap-12 min-h-[700px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
         {/* Product Image */}
-        <div className="bg-gray-100 rounded-xl overflow-hidden h-[500px] flex items-center justify-center">
+       
           {loading ? (
-            <div className="animate-pulse bg-gray-200 w-full h-full"></div>
+            <div className="animate-pulse bg-gray-200"></div>
           ) : (
             <img
               src={product.image || "/placeholder.svg?height=700&width=600"}
               alt={product.name}
-              className="w-full h-full object-cover"
+              className="w-full h-[450px] object-contain"
               loading="eager"
             />
           )}
-        </div>
+      
 
         {/* Product Details */}
-        <div className="flex flex-col h-[500px]">
-          <div className="flex-grow h-[500px]">
+        <div className="flex flex-col h-auto md:h-[500px]">
+          <div className="flex-grow">
             {loading ? (
               <div className="space-y-4">
                 <div className="h-4 bg-gray-200 rounded animate-pulse w-1/4"></div>
@@ -174,40 +177,40 @@ const ProductDetail = () => {
               </div>
             ) : (
               <>
-                <div className="mb-6">
+                <div className="mb-4 sm:mb-6">
                   {product.isNew && (
                     <Badge className="border text-center items-center text-[#D4AF37] hover:bg-[#D4AF37] mb-2">
                       NEW
                     </Badge>
                   )}
 
-                  <h1 className="text-3xl font-bold mt-2 text-gray-900">
+                  <h1 className="text-2xl sm:text-3xl font-bold mt-2 text-gray-900">
                     {product.name}
                   </h1>
 
-                  <div className="flex items-center mt-3">
+                  <div className="flex items-center mt-2 sm:mt-3">
                     <div
                       className="flex"
                       aria-label={`Rating: ${product.rating} out of 5 stars`}
                     >
                       {renderStars(product.rating)}
                     </div>
-                    <span className="ml-2 text-sm text-gray-600">
+                    <span className="ml-2 text-xs sm:text-sm text-gray-600">
                       {product.rating.toFixed(1)} (
                       {Math.floor(Math.random() * 100) + 50} reviews)
                     </span>
                   </div>
                 </div>
 
-                <div className="prose prose-emerald max-w-none mb-6">
-                  <p className="text-gray-700 leading-relaxed">
+                <div className="prose prose-emerald max-w-none mb-4 sm:mb-6">
+                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                     {product.description.slice(0, 200)}
                     {product.description.length > 200 && "..."}
                   </p>
                 </div>
 
-                <div className="flex items-center gap-4 mb-8">
-                  <span className="text-3xl font-bold text-gray-900">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+                  <span className="text-2xl sm:text-3xl font-bold text-gray-900">
                     ${product.price.toFixed(2)}
                   </span>
                   {product.inStock ? (
@@ -227,12 +230,12 @@ const ProductDetail = () => {
                   )}
                 </div>
 
-                <Separator className="my-6" />
+                <Separator className="my-4 sm:my-6" />
 
-                <div className="grid gap-6 mb-8">
+                <div className="grid gap-4 sm:gap-6 mb-6 sm:mb-8">
                   <div>
                     <h3 className="font-medium text-gray-900 mb-2">Size</h3>
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
                       <Button className="rounded-md bg-[#D4AF37] hover:bg-[#D4AF37]/90 text-white">
                         {product.size}
                       </Button>
@@ -243,11 +246,11 @@ const ProductDetail = () => {
             )}
           </div>
 
-          <div className="mt-auto space-y-6">
+          <div className="mt-auto space-y-4 sm:space-y-6">
             <div className="flex gap-3">
               <Button
                 onClick={handleAddToCart}
-                className="flex-1 bg-[#D4AF37] hover:bg-[#D4AF37]/90 text-white rounded-lg py-6"
+                className="w-full flex-1 bg-[#D4AF37] hover:bg-[#D4AF37]/90 text-white rounded-lg py-4 sm:py-6 text-sm sm:text-base font-medium"
                 disabled={!product.inStock || loading}
               >
                 {loading ? "LOADING..." : "ADD TO CART"}
@@ -255,6 +258,16 @@ const ProductDetail = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Mobile back to products button - only visible on small screens */}
+      <div className="mt-8 sm:hidden">
+        <Link to="/shop">
+          <Button variant="outline" className="w-full">
+            <ChevronRight className="h-4 w-4 rotate-180 mr-2" />
+            Back to Products
+          </Button>
+        </Link>
       </div>
     </div>
   );
