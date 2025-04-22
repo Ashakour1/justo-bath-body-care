@@ -1,19 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import axios from "axios";
-import {
-  ArrowLeft,
-  ArrowDownUp,
-  ShirtIcon,
-  Ruler,
-  DollarSign,
-  X,
-  Search,
-  RefreshCw,
-} from "lucide-react";
-import type { ProductType } from "@/types/product.t";
+import Product from "@/components/Products/Product";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -21,9 +10,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import Product from "@/components/Products/Product";
+import type { ProductType } from "@/types/product.t";
+import axios from "axios";
+import {
+  ArrowDownUp,
+  ChevronRight,
+  DollarSign,
+  RefreshCw,
+  Ruler,
+  Search,
+  ShirtIcon,
+  X,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 const Products = () => {
   const { category, collection } = useParams();
@@ -232,15 +232,27 @@ const Products = () => {
           <div>
             <div className="flex items-center justify-between">
               <div className="flex flex-col gap-2">
-                <p className="font-medium text-sm">
-                  <Link
-                    to="/"
-                    className="flex items-center text-sm text-gray-500 hover:text-gray-900 mb-4"
-                  >
-                    <ArrowLeft className="mr-2 h-4 w-4" />
-                    Back to Home
-                  </Link>
-                </p>
+                <nav className="mb-4 text-sm">
+                  <ol className="flex items-center space-x-2">
+                    <li>
+                      <Link
+                        to="/"
+                        className="text-gray-500 hover:text-[#D4AF37] transition-colors"
+                      >
+                        Home
+                      </Link>
+                    </li>
+                    <li className="flex items-center">
+                      <ChevronRight className="h-3 w-3 text-gray-400 mx-1" />
+                      <Link
+                        to="/shop"
+                        className="text-gray-500 hover:text-[#D4AF37] transition-colors"
+                      >
+                        Products
+                      </Link>
+                    </li>
+                  </ol>
+                </nav>
                 <h1 className="text-2xl text-[#D4AF37] font-semibold capitalize">
                   {category || "SHOP ALL PRODUCTS"}
                 </h1>

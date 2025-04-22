@@ -24,6 +24,7 @@ type CartStore = {
   RemoveCart: (id: string) => void;
   IncrementQuantity: (id: string) => void;
   DecrementQuantity: (id: string) => void;
+  clearProduct: () => void;
 };
 
 export const useCart = create<CartStore>((set, get) => ({
@@ -159,6 +160,16 @@ export const useCart = create<CartStore>((set, get) => ({
       totalPriceWithTax: finalTotalPrice,
       totalItems: updatedTotalItems,
       tax: updatedTax,
+    });
+  },
+
+  clearProduct: () => {
+    set({
+      products: [],
+      totalPrice: 0,
+      totalItems: 0,
+      totalPriceWithTax: 0,
+      tax: 0,
     });
   },
 }));
