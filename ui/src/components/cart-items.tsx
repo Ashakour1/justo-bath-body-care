@@ -36,7 +36,7 @@ export default function CartPage() {
   };
 
   return (
-    <div className="max-w-[1200px] h-full mx-auto px-4 py-8 md:py-12">
+    <div className="max-w-[1200px] min-h-screen mx-auto px-4 py-8 md:py-12">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 pb-4 border-b border-yellow-500">
         <h1 className="text-xl sm:text-2xl font-semibold text-[#D4AF37] mb-2 sm:mb-0">
           Shopping Cart
@@ -199,7 +199,7 @@ export default function CartPage() {
               </div>
 
               <Button
-                className="w-full mt-6 bg-black hover:bg-gray-900 text-white"
+                className="w-full mt-6 bg-[#D4AF37] hover:bg-[#dec470] text-white"
                 onClick={handleCheckout}
               >
                 Proceed to Checkout
