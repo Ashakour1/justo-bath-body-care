@@ -5,6 +5,7 @@ import { useCart } from "@/features/useCart";
 import type { ProductType } from "@/types/product.t";
 import { ShoppingBag, Star } from "lucide-react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 type ProductProps = {
   product: ProductType;
@@ -13,6 +14,7 @@ type ProductProps = {
 
 const Product = ({ product }: ProductProps) => {
   const { AddCart } = useCart();
+  const navigate = useNavigate();
   // const [isHovered, setIsHovered] = useState(false);
 
   const handleAddToCart = () => {
@@ -48,7 +50,10 @@ const Product = ({ product }: ProductProps) => {
   };
 
   return (
-    <div className="group border rounded relative bg-white overflow-hidden transition-all duration-300 mx-2 h-full flex flex-col">
+    <div
+      onClick={() => navigate(`/product/${product.id}`)}
+      className="group border rounded relative bg-white overflow-hidden transition-all duration-300 mx-2 h-full flex flex-col"
+    >
       {/* Image Section */}
       <div className="relative  bg-gray-50 overflow-hidden">
         {product.isNew && (
