@@ -50,10 +50,7 @@ const Product = ({ product }: ProductProps) => {
   };
 
   return (
-    <div
-      onClick={() => navigate(`/product/${product.id}`)}
-      className="group border rounded relative bg-white overflow-hidden transition-all duration-300 mx-2 h-full flex flex-col"
-    >
+    <div className="group border rounded relative bg-white overflow-hidden transition-all duration-300 mx-2 h-full flex flex-col">
       {/* Image Section */}
       <div className="relative  bg-gray-50 overflow-hidden">
         {product.isNew && (
@@ -63,6 +60,7 @@ const Product = ({ product }: ProductProps) => {
         )}
         <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors duration-300"></div>
         <img
+          onClick={() => navigate(`/product/${product.id}`)}
           src={product.image || "/placeholder.svg"}
           alt={product.name}
           className="object-cover w-full h-[340px] transition-transform duration-700 group-hover:scale-105"
