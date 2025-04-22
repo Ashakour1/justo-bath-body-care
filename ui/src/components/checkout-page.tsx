@@ -29,7 +29,7 @@ interface CheckoutType {
 }
 
 export default function CheckoutPage() {
-  const { products } = useCart();
+  const { products, clearProduct } = useCart();
   const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -149,6 +149,7 @@ export default function CheckoutPage() {
           paymentNumber: "",
           note: "",
         });
+        clearProduct();
       } else {
         toast.error("Failed to place order. Please try again.");
       }
