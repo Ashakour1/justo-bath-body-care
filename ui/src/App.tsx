@@ -14,6 +14,7 @@ import ContactPage from "./pages/Contact";
 import HomePage from "./pages/HomePage";
 import Products from "./pages/ProductsPage";
 import ProductsWithFiltering from "./pages/ProductsWithFilter";
+import ProductDetail from "./components/Products/ProductDetail";
 function App() {
   return (
     <>
@@ -31,6 +32,8 @@ function App() {
           <Route path="/shop/*" element={<NotFound />} />
           <Route path="/about/our-philosophy" element={<OurPhilosophy />} />
           <Route path="/cart" element={<CartPage />} />
+
+          <Route path="/product/:id" element={<ProductDetail />} />
 
           <Route path="/checkout" element={<CheckoutPage />} />
           {/* <Route path="/invoice/:id" element={<InvoicePage />} /> */}
