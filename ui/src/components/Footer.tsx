@@ -54,12 +54,12 @@ const Footer = () => {
             &copy; 2023 Justo Cosmetic. All rights reserved.
           </p>
           <p className="text-center text-sm D4AF37">
-            Designed by{" "}
+            Developed by{" "}
             <a
-              href="https://www.linkedin.com/in/justo-nyamita-1b9b4b1a3/"
+              href="https://reliatrusty.com/"
               className="font-semibold hover:underline"
             >
-              Justo Nyamita
+              Relia trusty
             </a>
           </p>
         </div>
