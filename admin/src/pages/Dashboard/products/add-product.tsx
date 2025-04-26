@@ -255,10 +255,11 @@ const ProductForm = () => {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
               >
                 <option value="">Select a size</option>
-                <option value="50ml">50ml</option>
-                <option value="100ml">100ml</option>
-                <option value="200ml">200ml</option>
-                <option value="500ml">500ml</option>
+                <option value="20ml">20ml</option>
+                <option value="250">250</option>
+                <option value="275">275</option>
+                <option value="295ml">295ml</option>
+                <option value="300ml">300ml</option>
               </select>
             </div>
           </div>
