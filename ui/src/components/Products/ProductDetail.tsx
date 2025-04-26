@@ -152,18 +152,17 @@ const ProductDetail = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
         {/* Product Image */}
-       
-          {loading ? (
-            <div className="animate-pulse bg-gray-200"></div>
-          ) : (
-            <img
-              src={product.image || "/placeholder.svg?height=700&width=600"}
-              alt={product.name}
-              className="w-full h-[450px] object-contain"
-              loading="eager"
-            />
-          )}
-      
+
+        {loading ? (
+          <div className="animate-pulse bg-gray-200"></div>
+        ) : (
+          <img
+            src={product.image || "/placeholder.svg?height=700&width=600"}
+            alt={product.name}
+            className="w-full h-[450px] object-contain"
+            loading="eager"
+          />
+        )}
 
         {/* Product Details */}
         <div className="flex flex-col h-auto md:h-[500px]">
@@ -204,8 +203,7 @@ const ProductDetail = () => {
 
                 <div className="prose prose-emerald max-w-none mb-4 sm:mb-6">
                   <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                    {product.description.slice(0, 200)}
-                    {product.description.length > 200 && "..."}
+                    {product.description}
                   </p>
                 </div>
 
