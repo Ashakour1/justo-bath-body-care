@@ -152,17 +152,17 @@ const ProductDetail = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
         {/* Product Image */}
-
-        {loading ? (
-          <div className="animate-pulse bg-gray-200"></div>
-        ) : (
-          <img
-            src={product.image || "/placeholder.svg?height=700&width=600"}
-            alt={product.name}
-            className="w-full h-[450px] object-contain"
-            loading="eager"
-          />
-        )}
+        <div className="bg-gray-100 rounded-xl overflow-hidden h-[520px] flex items-center justify-center">
+          {loading ? (
+            <div className="animate-pulse bg-gray-200 w-full h-full"></div>
+          ) : (
+            <img
+              src={product.image || "/placeholder.svg?height=700&width=600"}
+              alt={product.name}
+              className="w-full h-full object-cover"
+            />
+          )}
+        </div>
 
         {/* Product Details */}
         <div className="flex flex-col h-auto md:h-[500px]">
