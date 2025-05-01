@@ -30,7 +30,6 @@ interface CheckoutType {
 
 export default function CheckoutPage() {
   const { products, clearProduct } = useCart();
-  const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
