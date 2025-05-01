@@ -46,12 +46,8 @@ export default function CheckoutPage() {
   });
 
   useEffect(() => {
-    setMounted(true);
+    window.scrollTo(0, 0); // Scroll to top when component mounts
   }, []);
-
-  if (!mounted) {
-    return null;
-  }
 
   if (products.length === 0) {
     navigate("/cart");

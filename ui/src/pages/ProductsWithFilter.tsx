@@ -257,6 +257,10 @@ const ProductsWithFiltering = () => {
       .join(" ");
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top when component mounts
+  }, []);
+
   return (
     <>
       {loading ? (
@@ -292,7 +296,6 @@ const ProductsWithFiltering = () => {
               {/* Left side - Filters */}
               <div className="flex flex-wrap gap-3 mb-3 md:mb-0">
                 {/* Product Type Filter - Only show if no category is specified */}
-              
 
                 {/* Size Filter - Always show */}
                 <Select

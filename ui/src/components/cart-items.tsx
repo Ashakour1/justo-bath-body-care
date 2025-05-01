@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 import { useCart } from "@/features/useCart";
 
 export default function CartPage() {
-  const [mounted, setMounted] = useState(false);
   const navigate = useNavigate();
 
   const {
@@ -19,13 +18,17 @@ export default function CartPage() {
     totalPrice,
   } = useCart();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // useEffect(() => {
+  //   setMounted(true);
+  // }, []);
 
-  if (!mounted) {
-    return null;
-  }
+  // if (!mounted) {
+  //   return null;
+  // }
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top when component mounts
+  }, []);
 
   const handleCheckout = () => {
     if (products.length === 0) {

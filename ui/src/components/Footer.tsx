@@ -2,8 +2,8 @@ import { Mail, MapPin, Phone } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="w-full border-t bg-black text-[#f5d877] py-8">
-      <div className="container px-4 md:px-6">
+    <footer className="w-full  border-t bg-black text-[#f5d877] py-8">
+      <div className="container px-4 md:px-6  ">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Contact Info</h3>
