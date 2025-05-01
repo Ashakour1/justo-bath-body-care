@@ -111,7 +111,7 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6 sm:py-8 md:py-12 max-w-6xl">
+    <div className="container mx-auto px-4 py-6 sm:py-8 md:py-12 max-w-6xl min-h-screen">
       {/* Breadcrumb - hidden on smallest screens */}
       <nav
         className="mb-4 sm:mb-6 md:mb-8 text-xs sm:text-sm hidden sm:block"
