@@ -24,7 +24,7 @@ const categories = [
     id: "Justo cosmetics",
     name: "Justo Cosmetics",
     description: "High-quality cosmetics for you.",
-    link: "/Shop/Justo Cosmetics",
+    link: "/Shop/Justo cosmetics",
   },
   {
     id: "Bath and body Works",
