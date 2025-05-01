@@ -214,7 +214,7 @@ const ProductDetail = () => {
 
                 <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
                   <span className="text-2xl sm:text-3xl font-bold text-gray-900">
-                    ${product.price.toFixed(2)}
+                    ksh{product.price.toFixed(2)}
                   </span>
                   {product.inStock ? (
                     <Badge
