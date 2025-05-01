@@ -15,6 +15,7 @@ import HomePage from "./pages/HomePage";
 import Products from "./pages/ProductsPage";
 import ProductsWithFiltering from "./pages/ProductsWithFilter";
 import ProductDetail from "./components/Products/ProductDetail";
+import WhatsAppButton from "./components/WhatsappButton";
 function App() {
   return (
     <>
@@ -46,6 +47,8 @@ function App() {
         </Routes>
         {/* <Footer /> */}
         <Footer />
+        <WhatsAppButton />
+        {/* <WhatsappButton /> */}
       </Router>
     </>
   );
