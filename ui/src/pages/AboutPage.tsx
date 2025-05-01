@@ -1,8 +1,19 @@
 import { Heart, Leaf, Users } from "lucide-react";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
 
 import CTA from "@/components/CTA";
+import { useEffect, useRef } from "react";
 
 const AboutPage = () => {
+  const sectionRef = useRef(null);
+
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top when component mounts
+  }, []);
+
   return (
     <div>
       {" "}
@@ -25,7 +36,10 @@ const AboutPage = () => {
         </section>
 
         {/* Mission Section */}
-        <section className="py-16 md:py-24 px-4 md:px-8 max-w-7xl mx-auto">
+        <section
+          className="py-16 md:py-24 px-4 md:px-8 max-w-7xl mx-auto"
+          ref={sectionRef}
+        >
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-[#D4AF37] text-3xl md:text-4xl font-bold mb-6">
@@ -45,13 +59,57 @@ const AboutPage = () => {
                 embracing modern innovation.
               </p>
             </div>
-            <div className="relative h-[400px] rounded-lg overflow-hidden">
-              <img
-                src="/product1.jpg"
-                alt="Natural ingredients from the Horn of Africa"
-                className="object-cover"
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={
+                isInView
+                  ? { opacity: 1, scale: 1 }
+                  : { opacity: 0, scale: 0.95 }
+              }
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <motion.div
+                className="absolute -top-4 -right-4 w-full h-full border-2 border-[#d4b499] rounded-md"
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
               />
-            </div>
+              <div className="relative h-[450px] overflow-hidden rounded-md shadow-lg">
+                <motion.img
+                  src="image.jpg"
+                  alt="Our story"
+                  className="object-cover w-full h-full"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  initial={{ scale: 1.2 }}
+                  animate={isInView ? { scale: 1 } : { scale: 1.2 }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
+                />
+                <motion.div
+                  className="absolute inset-0 bg-[#2d4a3e] mix-blend-multiply opacity-20"
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 0.2 } : { opacity: 0 }}
+                  transition={{ delay: 0.2, duration: 0.8 }}
+                />
+              </div>
+              <motion.div
+                className="absolute -bottom-6 -left-6 w-24 h-24 bg-[#FFF8DC] rounded-full flex items-center justify-center"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={
+                  isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }
+                }
+                transition={{
+                  delay: 0.6,
+                  duration: 0.5,
+                  type: "spring",
+                  stiffness: 200,
+                }}
+              >
+                <span className="text-[#2d4a3e] font-serif text-sm">
+                  Since 2024
+                </span>
+              </motion.div>
+            </motion.div>
           </div>
         </section>
 
@@ -117,13 +175,41 @@ const AboutPage = () => {
               impact in the Horn of Africa and beyond.
             </p>
             <div className="grid md:grid-cols-2 gap-12">
-              <div className="relative h-[400px] rounded-lg overflow-hidden">
-                <img
-                  src="/image.jpg"
-                  alt="Community engagement initiatives"
-                  className="object-cover"
+              <motion.div
+                className="relative"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={
+                  isInView
+                    ? { opacity: 1, scale: 1 }
+                    : { opacity: 0, scale: 0.95 }
+                }
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                <motion.div
+                  className="absolute -top-4 -left-4 w-full h-full border-2 border-[#d4b499] rounded-md"
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
                 />
-              </div>
+                <div className="relative h-[450px] overflow-hidden rounded-md shadow-lg">
+                  <motion.img
+                    src="image.jpg"
+                    alt="Our story"
+                    className="object-cover w-full h-full"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    initial={{ scale: 1.2 }}
+                    animate={isInView ? { scale: 1 } : { scale: 1.2 }}
+                    transition={{ duration: 1.2, ease: "easeOut" }}
+                  />
+                  <motion.div
+                    className="absolute inset-0 bg-[#2d4a3e] mix-blend-multiply opacity-20"
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 0.2 } : { opacity: 0 }}
+                    transition={{ delay: 0.2, duration: 0.8 }}
+                  />
+                </div>
+              </motion.div>
+
               <div>
                 <div className="mb-8">
                   <h3 className="text-xl text-[#D4AF37] font-semibold mb-4">

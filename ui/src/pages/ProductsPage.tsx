@@ -163,6 +163,10 @@ const Products = () => {
     setSortOption("newest");
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top when component mounts
+  }, []);
+
   // Component for the "No Products Found" state
   const NoProductsFound = () => (
     <div className="flex flex-col items-center justify-center py-16 px-4 text-center">

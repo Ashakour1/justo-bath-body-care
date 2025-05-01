@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -65,6 +65,10 @@ export default function ContactPage() {
       message: "",
     },
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top when component mounts
+  }, []);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
