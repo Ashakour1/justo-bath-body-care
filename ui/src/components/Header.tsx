@@ -97,7 +97,7 @@ const Header = () => {
 
           {/* Logo */}
           <Link to="/" className="flex items-center" onClick={closeMobileMenu}>
-            <img src="/logo.png" className="w-32" alt="Logo" />
+            <img src="/logo.png" className="w-32 h-full" alt="Logo" />
           </Link>
 
           {/* Desktop Navigation */}
