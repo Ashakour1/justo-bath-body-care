@@ -16,32 +16,12 @@ import HomePage from "./pages/HomePage";
 import Products from "./pages/ProductsPage";
 import ProductsWithFiltering from "./pages/ProductsWithFilter";
 import TermsAndConditionsPage from "./pages/Terms&Conditions";
-import { Helmet } from "react-helmet";
 function App() {
   return (
     <>
       <Router>
         <Toaster />
-        <Helmet>
-          <title>Justo Cosmetics</title>
-          <meta
-            name="description"
-            content="Welcome to Justo Cosmetics your go-to skincare brand for natural, effective, and affordable skin care products. Specializing in acne treatment, anti-aging creams, moisturizers, and face cleansers, Justo Cosmetics offers premium skincare solutions for all skin types."
-          />
-
-          {/* Open Graph  */}
-          <meta property="og:title" content="Justo Cosmetics" />
-          <meta
-            property="og:description"
-            content="Welcome to Justo Cosmetics your go-to skincare brand for natural, effective, and affordable skin care products. Specializing in acne treatment, anti-aging creams, moisturizers, and face cleansers, Justo Cosmetics offers premium skincare solutions for all skin types."
-          />
-          <meta property="og:image" content="/image.jpg" />
-          <meta property="og:url" content="https://justocosmetics.com" />
-          <meta property="og:type" content="website" />
-          <meta property="og:site_name" content="Justo Cosmetics" />
-
-          {/* Twitter Card */}
-        </Helmet>
+     
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
