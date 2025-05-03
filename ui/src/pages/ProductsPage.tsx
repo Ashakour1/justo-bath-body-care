@@ -232,7 +232,7 @@ const Products = () => {
           <h1 className="text-xl">Loading...</h1>
         </div>
       ) : (
-        <main className="container mx-auto md:px-4 lg:px-4 px-4 py-10">
+        <div className="container mx-auto md:px-4 lg:px-4 px-4 py-10">
           <div>
             <div className="flex items-center justify-between">
               <div className="flex flex-col gap-2">
@@ -412,7 +412,7 @@ const Products = () => {
               </div>
             )}
           </div>
-        </main>
+        </div>
       )}
     </>
   );

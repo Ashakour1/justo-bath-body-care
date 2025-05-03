@@ -14,7 +14,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="w-full h-full">
+    <main className="w-full h-full">
       <HeroSection />
       <AboutSection />
       <CategoriesSection />
@@ -27,7 +27,7 @@ const HomePage = () => {
       {/* <CategorySection />
       <Products /> */}
       {/* <Footer /> */}
-    </div>
+    </main>
   );
 };
 

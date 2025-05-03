@@ -84,7 +84,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="bg-gradient-to-b from-background to-muted/20 min-h-screen">
+    <main className="bg-gradient-to-b from-background to-muted/20 min-h-screen">
       <div className="container mx-auto px-4 py-12 md:py-24">
         <div className="text-center mb-12 md:mb-20">
           <h1 className="text-4xl md:text-5xl font-bold text-[#D4AF37] tracking-tight mb-4">
@@ -303,7 +303,7 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 

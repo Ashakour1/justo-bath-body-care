@@ -3,7 +3,7 @@ import Category from "./Category";
 
 const CategoriesSection = () => {
   return (
-    <main className=" bg-[#ebe5d3] md:px-4 lg:px-0 px-4 py-10">
+    <section className=" bg-[#ebe5d3] md:px-4 lg:px-0 px-4 py-10">
       <div className="max-w-[1300px] mx-auto">
         <div className="py-4">
           <div className="text-center mb-10">
@@ -20,7 +20,7 @@ const CategoriesSection = () => {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   );
 };
 

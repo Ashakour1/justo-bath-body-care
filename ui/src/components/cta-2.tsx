@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 
 const CtaSection = () => {
   return (
-    <div className="max-w-[1300px] mx-auto">
+    <section className="max-w-[1300px] mx-auto">
       <div className=" ">
         <div className="grid md:grid-cols-2 gap-6">
           {/* Product Image Section */}
@@ -71,7 +71,7 @@ const CtaSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

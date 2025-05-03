@@ -86,7 +86,7 @@ export default function ProductCategories({}: ProductCategoriesProps) {
   }, []);
 
   return (
-    <div className="py-16 bg-white">
+    <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-medium text-[#D4AF37] mb-4">
@@ -156,6 +156,6 @@ export default function ProductCategories({}: ProductCategoriesProps) {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
