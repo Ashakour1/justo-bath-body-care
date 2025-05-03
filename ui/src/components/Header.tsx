@@ -61,7 +61,7 @@ const Header = () => {
       }}
       transition={{ duration: 0.3 }}
     >
-      <div className="container px-4 mx-auto">
+      <div className="max-w-[1300px] px-4 mx-auto">
         <div className="flex items-center justify-between py-4">
           {/* Mobile Menu Button */}
           <Button

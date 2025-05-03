@@ -101,7 +101,7 @@ const Products = () => {
           <h1 className="text-xl font-semibold">No Products Found</h1>
         </div>
       ) : (
-        <main className="container mx-auto py-8 px-4">
+        <main className="max-w-[1300px] mx-auto py-8 px-4">
           <div className="flex items-center justify-between mb-8">
             <div className="flex flex-col gap-1">
               <p className="font-medium text-sm text-gray-600">
@@ -135,7 +135,7 @@ const Products = () => {
                 {products.map((product) => (
                   <div
                     key={product.id}
-                    className="flex-shrink-0 px-3"
+                    className="flex-shrink-0"
                     style={{ width: `${100 / visibleProducts}%` }}
                   >
                     <Product product={product} />

@@ -1,9 +1,7 @@
+import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
 import { useRef } from "react";
-
+import { Link } from "react-router-dom";
 const AboutSection = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
@@ -23,7 +21,7 @@ const AboutSection = () => {
 
   return (
     <section id="about" className="w-full py-20 bg-[#ffffff]" ref={sectionRef}>
-      <div className="container px-4 md:px-6">
+      <div className="max-w-[1300px] mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
             className="relative"

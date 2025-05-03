@@ -3,9 +3,9 @@ import { Button } from "./ui/button";
 
 const CtaSection = () => {
   return (
-    <div className="container mx-auto p-4">
+    <div className="max-w-[1300px] mx-auto">
       <div className=" ">
-        <div className="grid md:grid-cols-2 gap-6 p-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {/* Product Image Section */}
           <div className="relative flex items-center justify-center">
             <div className="relative z-10 h-[500px] w-full">

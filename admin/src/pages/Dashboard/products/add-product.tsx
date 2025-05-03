@@ -44,6 +44,8 @@ const ProductForm = () => {
     image: null,
   });
 
+  
+
   const fetchProduct = async () => {
     try {
       setIsLoading(true);

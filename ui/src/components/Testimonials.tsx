@@ -78,7 +78,7 @@ export default function TestimonialsSection() {
 
   return (
     <section className="py-16 px-4 bg-gradient-to-b from-white to-slate-50">
-      <div className="container mx-auto">
+      <div className="max-w-[1300px] mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#D4AF37]">
             Real Results, Real People

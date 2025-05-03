@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const HeroSection = () => {
   return (
     <section className="w-full py-8 sm:py-12 md:py-16 lg:py-20 bg-[#fffefa]">
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="max-w-[1300px] mx-auto px-4 md:px-6">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="flex flex-col justify-center space-y-4">
             <motion.div
