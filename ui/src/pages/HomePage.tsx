@@ -20,7 +20,7 @@ const HomePage = () => {
         <title>Justo Cosmetics</title>
         <meta
           name="description"
-          content="Welcome to Justo Cosmetics your go-to skincare brand for natural, effective, and affordable skin care products. Specializing in acne treatment, anti-aging creams, moisturizers, and face cleansers, Justo Cosmetics offers premium skincare solutions for all skin types."
+          content="Welcome to Justo Cosmetics your go-to skincare brand for natural, effective, and affordable skin care products."
         />
 
         <meta
