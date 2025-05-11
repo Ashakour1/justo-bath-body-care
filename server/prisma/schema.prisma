@@ -32,6 +32,7 @@ model Product {
   price Float
   category String
   rating Float
+  quantity Int
   size String
   isNew Boolean @default(false)
   inStock Boolean @default(false)
@@ -52,6 +53,7 @@ model Order {
   updatedAt DateTime @updatedAt
   OrderItem OrderItem[]
   Shipping Shipping[]
+  
 
 }
 

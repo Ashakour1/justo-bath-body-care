@@ -48,10 +48,27 @@ export const getProduct = asyncHandler(async (req, res) => {
 
 export const createProduct = asyncHandler(async (req, res) => {
   try {
-    const { name, description, price, category, rating, size, isNew, inStock } =
-      req.body;
+    const {
+      name,
+      description,
+      price,
+      category,
+      rating,
+      size,
+      isNew,
+      inStock,
+      quantity,
+    } = req.body;
 
-    if (!name || !description || !price || !category || !rating || !size) {
+    if (
+      !name ||
+      !description ||
+      !price ||
+      !category ||
+      !rating ||
+      !size ||
+      !quantity
+    ) {
       return res.status(400).json({ message: "Please fill in all fields" });
     }
     // const parsedRating = parseFloat(rating);
@@ -93,6 +110,7 @@ export const createProduct = asyncHandler(async (req, res) => {
         category,
         rating: parseFloat(rating),
         size,
+        quantity: parseInt(quantity),
         image: result?.secure_url,
         isNew: isNew === "true" || isNew === true,
         inStock: inStock === "true" || inStock === true,
@@ -108,6 +126,8 @@ export const createProduct = asyncHandler(async (req, res) => {
 
 export const updateProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
+  const { name, description, price, category, rating, size, isNew, quantity } =
+    req.body;
 
   try {
     const product = await prisma.product.findUnique({
@@ -147,6 +167,7 @@ export const updateProduct = asyncHandler(async (req, res) => {
         category,
         rating: parseFloat(rating),
         size,
+        quantity: parseInt(quantity),
         image: result?.secure_url,
         isNew: isNew === "true" || isNew === true,
       },
