@@ -61,8 +61,9 @@ const Header = () => {
       }}
       transition={{ duration: 0.3 }}
     >
-      <div className="max-w-[1300px] px-4 mx-auto">
-        <div className="flex items-center justify-between py-4">
+      <div className="max-w-[1300px] px-4 mx-auto w-full flex flex-col">
+        {/* Top Row */}
+        <div className="flex items-center justify-between py-4 w-full">
           {/* Mobile Menu Button */}
           <Button
             variant="ghost"
@@ -97,7 +98,7 @@ const Header = () => {
 
           {/* Logo */}
           <Link to="/" className="flex items-center" onClick={closeMobileMenu}>
-            <img src="/logo.png" className="w-32 h-full" alt="Logo" />
+            <img src="/logo.png" className="w-32 h-auto" alt="Logo" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -189,17 +190,17 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Mobile Navigation Menu */}
+        {/* Mobile Navigation */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              className="md:hidden border-t"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="md:hidden border-t overflow-hidden"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
             >
-              <ul className="py-2">
+              <ul className="py-2 space-y-1">
                 <li className="py-2 px-4">
                   <NavItem
                     href="/Shop/Justo cosmetics"
@@ -219,13 +220,8 @@ const Header = () => {
                       Collections
                       <ChevronDown className="h-4 w-4 transition-transform duration-200 group-open:rotate-180" />
                     </summary>
-                    <motion.ul
-                      className="pl-4 mt-2 space-y-2"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <li className="py-1">
+                    <ul className="pl-4 mt-2 space-y-2">
+                      <li>
                         <Link
                           to="/Shop/collection/Justo cosmetics"
                           className="text-sm text-gray-600"
@@ -234,7 +230,7 @@ const Header = () => {
                           Justo Products
                         </Link>
                       </li>
-                      <li className="py-1">
+                      <li>
                         <Link
                           to="/Shop/collection/Rituals"
                           className="text-sm text-gray-600"
@@ -243,7 +239,7 @@ const Header = () => {
                           Rituals
                         </Link>
                       </li>
-                      <li className="py-1">
+                      <li>
                         <Link
                           to="/Shop/collection/Bath and body Works"
                           className="text-sm text-gray-600"
@@ -252,7 +248,7 @@ const Header = () => {
                           Bath & Body Works
                         </Link>
                       </li>
-                      <li className="py-1">
+                      <li>
                         <Link
                           to="/Shop/collection/Perfumes"
                           className="text-sm text-gray-600"
@@ -261,7 +257,7 @@ const Header = () => {
                           Perfumes
                         </Link>
                       </li>
-                    </motion.ul>
+                    </ul>
                   </details>
                 </li>
                 <li className="py-2 px-4">

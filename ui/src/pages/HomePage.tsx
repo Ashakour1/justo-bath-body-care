@@ -15,7 +15,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <main className="w-full h-full">
+    <main>
       <Helmet>
         <title>Justo Cosmetics</title>
         <meta
