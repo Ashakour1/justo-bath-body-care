@@ -16,6 +16,7 @@ type ProductType = {
   description: string;
   isNew: boolean;
   inStock: boolean;
+  quantity: string;
   image?: File | null;
   imageUrl?: string;
 };
@@ -41,10 +42,9 @@ const ProductForm = () => {
     description: "",
     isNew: false,
     inStock: false,
+    quantity: "",
     image: null,
   });
-
-  
 
   const fetchProduct = async () => {
     try {
@@ -60,6 +60,7 @@ const ProductForm = () => {
         description: data.description || "",
         isNew: data.isNew || false,
         inStock: data.inStock || false,
+        quantity: data.quantity || "",
         imageUrl: data.imageUrl || "",
       });
 
@@ -115,6 +116,7 @@ const ProductForm = () => {
     formDataToSend.append("description", formData.description);
     formDataToSend.append("isNew", formData.isNew.toString());
     formDataToSend.append("inStock", formData.inStock.toString());
+    formDataToSend.append("quantity", formData.quantity);
 
     if (formData.image) {
       formDataToSend.append("image", formData.image);
@@ -195,9 +197,8 @@ const ProductForm = () => {
                 type="text"
                 value={formData.name}
                 onChange={handleInputChange}
-                placeholder="Enter product name"
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
               />
             </div>
 
@@ -213,11 +214,10 @@ const ProductForm = () => {
                 type="number"
                 value={formData.price}
                 onChange={handleInputChange}
-                placeholder="0.00"
                 required
                 min="0"
                 step="0.01"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
               />
             </div>
           </div>
@@ -235,7 +235,7 @@ const ProductForm = () => {
                 value={formData.category}
                 onChange={handleInputChange}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
               >
                 <option value="">Select a category</option>
                 <option value="Perfumes">Perfumes</option>
@@ -254,7 +254,7 @@ const ProductForm = () => {
                 value={formData.size}
                 onChange={handleInputChange}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
               >
                 <option value="">Select a size</option>
                 <option value="20ml">20ml</option>
@@ -272,7 +272,7 @@ const ProductForm = () => {
                 htmlFor="rating"
                 className="block font-medium text-gray-700"
               >
-                Rating (0-5)
+                Rating (0–5)
               </label>
               <input
                 id="rating"
@@ -281,12 +281,31 @@ const ProductForm = () => {
                 max="5"
                 value={formData.rating}
                 onChange={handleInputChange}
-                placeholder="5"
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
               />
             </div>
 
+            <div className="space-y-2">
+              <label
+                htmlFor="quantity"
+                className="block font-medium text-gray-700"
+              >
+                Quantity
+              </label>
+              <input
+                id="quantity"
+                type="number"
+                min="0"
+                value={formData.quantity}
+                onChange={handleInputChange}
+                required
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="border border-gray-200 rounded-md p-4">
               <div className="flex items-start space-x-2">
                 <input
@@ -294,7 +313,7 @@ const ProductForm = () => {
                   type="checkbox"
                   checked={formData.isNew}
                   onChange={handleInputChange}
-                  className="h-4 w-4 mt-1 text-black focus:ring-black border-gray-300 rounded"
+                  className="h-4 w-4 mt-1"
                 />
                 <div>
                   <label
@@ -309,9 +328,7 @@ const ProductForm = () => {
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="md:col-span-1 md:col-start-2">
             <div className="border border-gray-200 rounded-md p-4">
               <div className="flex items-start space-x-2">
                 <input
@@ -319,7 +336,7 @@ const ProductForm = () => {
                   type="checkbox"
                   checked={formData.inStock}
                   onChange={handleInputChange}
-                  className="h-4 w-4 mt-1 text-black focus:ring-black border-gray-300 rounded"
+                  className="h-4 w-4 mt-1"
                 />
                 <div>
                   <label
@@ -347,9 +364,8 @@ const ProductForm = () => {
               id="description"
               value={formData.description}
               onChange={handleInputChange}
-              placeholder="Enter product description"
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent min-h-[120px]"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm min-h-[120px]"
             />
           </div>
 
@@ -378,9 +394,7 @@ const ProductForm = () => {
               </span>
             </div>
             {imageFile && (
-              <p className="text-sm text-gray-600 mt-2">
-                Selected: {imageFile.name}
-              </p>
+              <p className="text-sm mt-2">Selected: {imageFile.name}</p>
             )}
             {imagePreview && (
               <div className="mt-4">
@@ -397,7 +411,7 @@ const ProductForm = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black ${
+              className={`bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 ${
                 isSubmitting ? "opacity-70 cursor-not-allowed" : ""
               }`}
             >
