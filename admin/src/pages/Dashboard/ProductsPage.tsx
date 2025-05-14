@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Badge } from "../../components/ui/badge";
+import { useAuthStore } from "../../store/store";
 
 type Products = {
   id: string;
@@ -36,8 +37,15 @@ type Products = {
 export const ProductTable = () => {
   const [products, setProducts] = useState<Products[]>([]);
   const [loading, setLoading] = useState(false);
+  const { isAuthenticated } = useAuthStore();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
 
   const fetchProducts = async () => {
     setLoading(true);
