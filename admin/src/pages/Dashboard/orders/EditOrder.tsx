@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAuthStore } from "../../../store/store";
 
 interface OrderTypes {
   // customerName: string;
@@ -25,6 +26,16 @@ const OrderForm = () => {
     paymentStatus: "",
   });
 
+  const { isAuthenticated } = useAuthStore();
+  
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      if (!isAuthenticated) {
+        navigate("/");
+      }
+    }, [isAuthenticated, navigate]);
+
   console.log(formData.status);
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -32,7 +43,6 @@ const OrderForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const navigate = useNavigate();
   const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
