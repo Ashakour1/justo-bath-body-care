@@ -17,6 +17,8 @@ import {
   TableHeader,
   TableRow,
 } from "../../../components/ui/table";
+import { useAuthStore } from "../../../store/store";
+import { useNavigate } from "react-router-dom";
 
 interface Order {
   id: string;
@@ -39,7 +41,15 @@ export const CustomerTable = () => {
   // const navigate = useNavigate();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(false);
+  const { isAuthenticated } = useAuthStore();
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
   const fetchOrders = async () => {
     setLoading(true);
     try {
