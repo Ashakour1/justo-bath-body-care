@@ -18,6 +18,7 @@ import { MoveHorizontalIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Badge } from "../../../components/ui/badge";
 import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../../store/store";
 
 interface Order {
   id: string;
@@ -43,6 +44,16 @@ export const OrderTable = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(false);
 
+  const { isAuthenticated } = useAuthStore();
+  
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      if (!isAuthenticated) {
+        navigate("/");
+      }
+    }, [isAuthenticated, navigate]);
+
   const fetchOrders = async () => {
     setLoading(true);
     try {
@@ -56,7 +67,6 @@ export const OrderTable = () => {
     setLoading(false);
   };
 
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchOrders();

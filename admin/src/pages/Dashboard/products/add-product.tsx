@@ -5,6 +5,7 @@ import { ArrowLeft, Upload } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useAuthStore } from "../../../store/store";
 
 type ProductType = {
   _id?: string;
@@ -45,6 +46,14 @@ const ProductForm = () => {
     quantity: "",
     image: null,
   });
+
+  const { isAuthenticated } = useAuthStore();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
 
   const fetchProduct = async () => {
     try {
