@@ -168,7 +168,7 @@ const Products = () => {
             </Button>
 
             {/* Pagination dots */}
-            <div className="flex justify-center mt-6 gap-1.5">
+            {/* <div className="flex justify-center mt-6 gap-1.5">
               {Array.from({
                 length: Math.ceil(products.length / visibleProducts),
               }).map((_, index) => (
@@ -183,7 +183,7 @@ const Products = () => {
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
-            </div>
+            </div> */}
           </div>
         </main>
       )}

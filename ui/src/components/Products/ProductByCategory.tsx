@@ -125,7 +125,7 @@ export default function ProductCategories({}: ProductCategoriesProps) {
                     <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#D4AF37]"></div>
                   </div>
                 ) : categoryProducts[category.id]?.length > 0 ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                  <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-5 py-5">
                     {categoryProducts[category.id]
                       .slice(0, 4)
                       .map((product) => (

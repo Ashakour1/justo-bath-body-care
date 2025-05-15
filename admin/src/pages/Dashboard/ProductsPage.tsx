@@ -38,7 +38,6 @@ export const ProductTable = () => {
   const [products, setProducts] = useState<Products[]>([]);
   const [loading, setLoading] = useState(false);
   const { isAuthenticated } = useAuthStore();
-
   const navigate = useNavigate();
 
   useEffect(() => {

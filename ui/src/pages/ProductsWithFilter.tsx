@@ -420,7 +420,7 @@ const ProductsWithFiltering = () => {
             {filteredProducts.length === 0 ? (
               <NoProductsFound />
             ) : (
-              <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 py-5">
+              <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-5 py-5">
                 {filteredProducts.map((item, index) => (
                   <Product key={index} product={item} />
                 ))}
