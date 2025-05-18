@@ -46,6 +46,10 @@ function App() {
             path="/shop/collection/Bath-and-body-Works/:subCategory"
             element={<ProductsWithFiltering />}
           />
+          <Route
+            path="/shop/collection/Rituals/:sub_category"
+            element={<ProductsWithFiltering />}
+          />
 
           <Route
             path="/terms-and-conditions"

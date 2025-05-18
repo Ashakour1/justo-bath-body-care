@@ -26,7 +26,7 @@ import { Badge } from "@/components/ui/badge";
 import Product from "@/components/Products/Product";
 
 const ProductsWithFiltering = () => {
-  const { category, collection, subCategory } = useParams();
+  const { category, collection, sub_category } = useParams();
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState<ProductType[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<ProductType[]>([]);
@@ -64,7 +64,7 @@ const ProductsWithFiltering = () => {
         params: {
           ...(category && { category }),
           ...(collection && { collection }),
-          ...(subCategory && { subCategory }),
+          ...(sub_category && { sub_category }),
         },
       });
       setProducts(response.data);
@@ -245,7 +245,7 @@ const ProductsWithFiltering = () => {
 
   // Get the display name for the category
   const getCategoryDisplayName = () => {
-    if (!category || !subCategory) return "SHOP ALL PRODUCTS";
+    if (!category || !sub_category) return "SHOP ALL PRODUCTS";
 
     // Convert kebab-case or snake_case to Title Case
     return category

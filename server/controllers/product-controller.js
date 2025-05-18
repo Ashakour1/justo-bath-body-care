@@ -115,7 +115,7 @@ export const createProduct = asyncHandler(async (req, res) => {
         description,
         price: parseFloat(price),
         category,
-        subCategory: sub_category,
+        sub_category,
         rating: parseFloat(rating),
         size,
         quantity: parseInt(quantity),
