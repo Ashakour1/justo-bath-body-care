@@ -3,7 +3,7 @@
 import { ChevronDown, Menu, ShoppingBag, X } from "lucide-react";
 import type React from "react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
@@ -34,6 +34,7 @@ const NavItem: React.FC<NavItemProps> = ({ href, children, onClick }) => (
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const { products } = useCart();
 
@@ -44,6 +45,13 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    // Force re-render on route change
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
@@ -339,7 +347,7 @@ const Header = () => {
                       </li>
                       <li>
                         <Link
-                          to="/Shop/collection/Bath and body Works"
+                          to="/Shop/collection/Bath-and-body-Works"
                           className="text-sm text-gray-600"
                           onClick={closeMobileMenu}
                         >
@@ -367,7 +375,7 @@ const Header = () => {
                     <ul className="pl-4 mt-2 space-y-2">
                       <li>
                         <Link
-                          to="/Shop/collection/Bath and body Works/Body Care"
+                          to="/Shop/collection/Bath-and-body-Works/Body Care"
                           className="text-sm text-gray-600"
                           onClick={closeMobileMenu}
                         >
@@ -376,7 +384,7 @@ const Header = () => {
                       </li>
                       <li>
                         <Link
-                          to="/Shop/collection/Bath and body Works/Gift box"
+                          to="/Shop/collection/Bath-and-body-Works/Gift box"
                           className="text-sm text-gray-600"
                           onClick={closeMobileMenu}
                         >
@@ -385,7 +393,7 @@ const Header = () => {
                       </li>
                       <li>
                         <Link
-                          to="/Shop/collection/Bath and body Works/Body and Hair Fragrance"
+                          to="/Shop/collection/Bath-and-body-Works/Body and Hair Fragrance"
                           className="text-sm text-gray-600"
                           onClick={closeMobileMenu}
                         >
@@ -394,7 +402,7 @@ const Header = () => {
                       </li>
                       <li>
                         <Link
-                          to="/Shop/collection/Bath and body Works/Hand Care"
+                          to="/Shop/collection/Bath-and-body-Works/Hand Care"
                           className="text-sm text-gray-600"
                           onClick={closeMobileMenu}
                         >
@@ -403,7 +411,7 @@ const Header = () => {
                       </li>
                       <li>
                         <Link
-                          to="/Shop/collection/Bath and body Works/Home Fragrance"
+                          to="/Shop/collection/Bath-and-body-Works/Home Fragrance"
                           className="text-sm text-gray-600"
                           onClick={closeMobileMenu}
                         >
