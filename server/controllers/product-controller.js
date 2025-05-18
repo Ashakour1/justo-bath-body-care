@@ -1,7 +1,6 @@
 import asyncHandler from "express-async-handler";
 import prisma from "../db/prisma.js";
 import cloudinary from "../config/cloudinary.js";
-
 export const getProducts = asyncHandler(async (req, res) => {
   const { isNew, category, sub_category } = req.query;
 
@@ -13,14 +12,13 @@ export const getProducts = asyncHandler(async (req, res) => {
         return new Date(b.createdAt) - new Date(a.createdAt);
       });
     } else {
-      // Apply filters only if category and/or sub_category are present
       const filters = {};
-      if (category) filters.category = category;
-      if (sub_category) filters.sub_category = sub_category;
+      if (category)
+        filters.category = { equals: category, mode: "insensitive" };
+      if (sub_category)
+        filters.sub_category = { equals: sub_category, mode: "insensitive" };
 
-      products = await prisma.product.findMany({
-        where: filters,
-      });
+      products = await prisma.product.findMany({ where: filters });
     }
 
     res.status(200).json(products);
