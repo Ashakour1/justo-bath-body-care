@@ -272,7 +272,7 @@ const ProductForm = () => {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
               >
                 <option value="">Select a sub-category</option>
-                <option value="Gift box">Gift Box</option>
+                <option value="gift-box">Gift Box</option>
                 <option value="Body care">Body Care</option>
                 <option value="Body&Hair Fragrance">
                   Body & Hair Fragrance

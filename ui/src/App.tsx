@@ -43,7 +43,7 @@ function App() {
           <Route path="/products/" element={<ProductsPage />} />
           <Route path="/products/isNew" element={<ProductsNew />} /> */}
           <Route
-            path="/shop/collection/Bath-and-body-Works/:subCategory"
+            path="/shop/collection/Bath-and-body-Works/:sub_category"
             element={<ProductsWithFiltering />}
           />
           <Route

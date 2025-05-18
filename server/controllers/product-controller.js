@@ -3,8 +3,6 @@ import prisma from "../db/prisma.js";
 import cloudinary from "../config/cloudinary.js";
 
 export const getProducts = asyncHandler(async (req, res) => {
-  // const qisNew = req.query.new;
-
   const { isNew, category, sub_category } = req.query;
 
   try {
@@ -14,24 +12,20 @@ export const getProducts = asyncHandler(async (req, res) => {
       products = (await prisma.product.findMany()).sort((a, b) => {
         return new Date(b.createdAt) - new Date(a.createdAt);
       });
-    } else if (category) {
-      products = await prisma.product.findMany({
-        where: {
-          category,
-        },
-      });
-    } else if (sub_category) {
-      products = await prisma.product.findMany({
-        where: {
-          sub_category,
-        },
-      });
     } else {
-      products = await prisma.product.findMany();
+      // Apply filters only if category and/or sub_category are present
+      const filters = {};
+      if (category) filters.category = category;
+      if (sub_category) filters.sub_category = sub_category;
+
+      products = await prisma.product.findMany({
+        where: filters,
+      });
     }
 
     res.status(200).json(products);
   } catch (error) {
+    console.error("Product fetch error:", error);
     res.status(500).json({ message: error.message });
   }
 });
