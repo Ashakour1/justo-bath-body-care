@@ -376,7 +376,7 @@ const Header = () => {
                       </li>
                       <li>
                         <Link
-                          to="/Shop/collection/Bath and body Works/Gift Box"
+                          to="/Shop/collection/Bath and body Works/Gift box"
                           className="text-sm text-gray-600"
                           onClick={closeMobileMenu}
                         >
