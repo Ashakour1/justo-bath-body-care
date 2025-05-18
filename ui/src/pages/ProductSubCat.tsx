@@ -60,7 +60,7 @@ const ProductSubCategory = () => {
   const fetchingProducts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:8000/api/products`, {
+      const response = await axios.get(`https://justo-bath-body-care-siem.vercel.app/api/products`, {
         params: {
           ...(category && { category }),
           ...(sub_category && { sub_category }),
