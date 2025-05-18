@@ -268,13 +268,12 @@ const ProductForm = () => {
                 id="sub_category"
                 value={formData.sub_category}
                 onChange={handleInputChange}
-                required
                 className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
               >
                 <option value="">Select a sub-category</option>
-                <option value="gift-box">Gift Box</option>
+                <option value="Gift Box">Gift Box</option>
                 <option value="Body care">Body Care</option>
-                <option value="Body&Hair Fragrance">
+                <option value="Body & Hair Fragrance">
                   Body & Hair Fragrance
                 </option>
                 <option value="Hand Care">Hand Care</option>

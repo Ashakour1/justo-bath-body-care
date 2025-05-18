@@ -187,7 +187,7 @@ const Header = () => {
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
                       <Link
-                        to="/Shop/collection/Bath-and-body-Works/Body-and-Hair-Fragrance"
+                        to="/Shop/collection/Bath-and-body-Works/Body & Hair Fragrance"
                         onClick={closeMobileMenu}
                       >
                         Body & Hair Fragrance
@@ -252,7 +252,7 @@ const Header = () => {
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
                       <Link
-                        to="/Shop/collection/Rituals/Gift box"
+                        to="/Shop/collection/Rituals/Gift Box"
                         onClick={closeMobileMenu}
                       >
                         Gift Box
