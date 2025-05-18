@@ -16,6 +16,7 @@ import HomePage from "./pages/HomePage";
 import Products from "./pages/ProductsPage";
 import ProductsWithFiltering from "./pages/ProductsWithFilter";
 import TermsAndConditionsPage from "./pages/Terms&Conditions";
+import ProductSubCategory from "./pages/ProductSubCat";
 function App() {
   return (
     <>
@@ -43,12 +44,12 @@ function App() {
           <Route path="/products/" element={<ProductsPage />} />
           <Route path="/products/isNew" element={<ProductsNew />} /> */}
           <Route
-            path="/shop/collection/Bath-and-body-Works/:sub_category"
-            element={<ProductsWithFiltering />}
+            path="/shop/collection/:category/:sub_category"
+            element={<ProductSubCategory />}
           />
           <Route
-            path="/shop/collection/Rituals/:sub_category"
-            element={<ProductsWithFiltering />}
+            path="/shop/collection/:category/:sub_category"
+            element={<ProductSubCategory />}
           />
 
           <Route
