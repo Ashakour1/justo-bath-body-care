@@ -156,6 +156,104 @@ const Header = () => {
                 </DropdownMenu>
               </li>
               <li>
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="flex items-center text-sm font-medium text-gray-700 hover:text-primary">
+                    Bath & Body Works <ChevronDown className="ml-1 h-4 w-4" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to="/Shop/collection/Bath-and-body-Works/Body Care"
+                        onClick={closeMobileMenu}
+                      >
+                        Body Care
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to="/Shop/collection/Bath-and-body-Works/Gift Box"
+                        onClick={closeMobileMenu}
+                      >
+                        Gift Box
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to="/Shop/collection/Bath-and-body-Works/Body-and-Hair-Fragrance"
+                        onClick={closeMobileMenu}
+                      >
+                        Body & Hair Fragrance
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to="/Shop/collection/Bath-and-body-Works/Hand Care"
+                        onClick={closeMobileMenu}
+                      >
+                        Hand Care
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to="/Shop/collection/Bath-and-body-Works/Home Fragrance"
+                        onClick={closeMobileMenu}
+                      >
+                        Home Fragrance
+                      </Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </li>
+              <li>
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="flex items-center text-sm font-medium text-gray-700 hover:text-primary">
+                    Rituals <ChevronDown className="ml-1 h-4 w-4" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to="/Shop/collection/Rituals/Body Care"
+                        onClick={closeMobileMenu}
+                      >
+                        Body Care
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to="/Shop/collection/Rituals/Body and Hair Fragrance"
+                        onClick={closeMobileMenu}
+                      >
+                        Body & Hair Fragrance
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to="/Shop/collection/Rituals/Home Fragrance"
+                        onClick={closeMobileMenu}
+                      >
+                        Home Fragrance
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to="/Shop/collection/Rituals/Hand Care"
+                        onClick={closeMobileMenu}
+                      >
+                        Hand Care
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to="/Shop/collection/Rituals/Gift Box"
+                        onClick={closeMobileMenu}
+                      >
+                        Gift Box
+                      </Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </li>
+              <li>
                 <NavItem href="/about" onClick={closeMobileMenu}>
                   About
                 </NavItem>
@@ -255,6 +353,116 @@ const Header = () => {
                           onClick={closeMobileMenu}
                         >
                           Perfumes
+                        </Link>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+                <li className="py-2 px-4">
+                  <details className="group">
+                    <summary className="flex items-center justify-between cursor-pointer text-sm font-medium text-gray-700">
+                      Bath & Body Works
+                      <ChevronDown className="h-4 w-4 transition-transform duration-200 group-open:rotate-180" />
+                    </summary>
+                    <ul className="pl-4 mt-2 space-y-2">
+                      <li>
+                        <Link
+                          to="/Shop/collection/Bath and body Works/Body Care"
+                          className="text-sm text-gray-600"
+                          onClick={closeMobileMenu}
+                        >
+                          Body Care
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Shop/collection/Bath and body Works/Gift Box"
+                          className="text-sm text-gray-600"
+                          onClick={closeMobileMenu}
+                        >
+                          Gift Box
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Shop/collection/Bath and body Works/Body and Hair Fragrance"
+                          className="text-sm text-gray-600"
+                          onClick={closeMobileMenu}
+                        >
+                          Body & Hair Fragrance
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Shop/collection/Bath and body Works/Hand Care"
+                          className="text-sm text-gray-600"
+                          onClick={closeMobileMenu}
+                        >
+                          Hand Care
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Shop/collection/Bath and body Works/Home Fragrance"
+                          className="text-sm text-gray-600"
+                          onClick={closeMobileMenu}
+                        >
+                          Home Fragrance
+                        </Link>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+                <li className="py-2 px-4">
+                  <details className="group">
+                    <summary className="flex items-center justify-between cursor-pointer text-sm font-medium text-gray-700">
+                      Rituals
+                      <ChevronDown className="h-4 w-4 transition-transform duration-200 group-open:rotate-180" />
+                    </summary>
+                    <ul className="pl-4 mt-2 space-y-2">
+                      <li>
+                        <Link
+                          to="/Shop/collection/Rituals/Body Care"
+                          className="text-sm text-gray-600"
+                          onClick={closeMobileMenu}
+                        >
+                          Body Care
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Shop/collection/Rituals/Body and Hair Fragrance"
+                          className="text-sm text-gray-600"
+                          onClick={closeMobileMenu}
+                        >
+                          Body & Hair Fragrance
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Shop/collection/Rituals/Home Fragrance"
+                          className="text-sm text-gray-600"
+                          onClick={closeMobileMenu}
+                        >
+                          Home Fragrance
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Shop/collection/Rituals/Hand Care"
+                          className="text-sm text-gray-600"
+                          onClick={closeMobileMenu}
+                        >
+                          Hand Care
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Shop/collection/Rituals/Gift Box"
+                          className="text-sm text-gray-600"
+                          onClick={closeMobileMenu}
+                        >
+                          Gift Box
                         </Link>
                       </li>
                     </ul>

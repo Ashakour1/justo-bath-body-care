@@ -21,7 +21,7 @@ function App() {
     <>
       <Router>
         <Toaster />
-     
+
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -42,6 +42,10 @@ function App() {
           {/* <Route path="/products/:category" element={<ProductsCat />} />
           <Route path="/products/" element={<ProductsPage />} />
           <Route path="/products/isNew" element={<ProductsNew />} /> */}
+          <Route
+            path="/shop/collection/Bath-and-body-Works/:subCategory"
+            element={<ProductsWithFiltering />}
+          />
 
           <Route
             path="/terms-and-conditions"

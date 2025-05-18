@@ -26,7 +26,7 @@ import { Badge } from "@/components/ui/badge";
 import Product from "@/components/Products/Product";
 
 const ProductsWithFiltering = () => {
-  const { category, collection } = useParams();
+  const { category, collection, subCategory } = useParams();
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState<ProductType[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<ProductType[]>([]);
@@ -60,15 +60,13 @@ const ProductsWithFiltering = () => {
   const fetchingProducts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(
-        `https://justo-bath-body-care-siem.vercel.app/api/products`,
-        {
-          params: {
-            ...(category && { category }),
-            ...(collection && { collection }),
-          },
-        }
-      );
+      const response = await axios.get(`http://localhost:8000/api/products`, {
+        params: {
+          ...(category && { category }),
+          ...(collection && { collection }),
+          ...(subCategory && { subCategory }),
+        },
+      });
       setProducts(response.data);
       setFilteredProducts(response.data);
     } catch (error) {
@@ -247,7 +245,7 @@ const ProductsWithFiltering = () => {
 
   // Get the display name for the category
   const getCategoryDisplayName = () => {
-    if (!category) return "SHOP ALL PRODUCTS";
+    if (!category || !subCategory) return "SHOP ALL PRODUCTS";
 
     // Convert kebab-case or snake_case to Title Case
     return category

@@ -12,6 +12,7 @@ type ProductType = {
   name: string;
   price: string;
   category: string;
+  sub_category: string;
   rating: string;
   size: string;
   description: string;
@@ -38,6 +39,7 @@ const ProductForm = () => {
     name: "",
     price: "",
     category: "",
+    sub_category: "",
     rating: "",
     size: "",
     description: "",
@@ -71,6 +73,7 @@ const ProductForm = () => {
         inStock: data.inStock || false,
         quantity: data.quantity || "",
         imageUrl: data.imageUrl || "",
+        sub_category: data.sub_category || "",
       });
 
       if (data.imageUrl) {
@@ -120,6 +123,7 @@ const ProductForm = () => {
     formDataToSend.append("name", formData.name);
     formDataToSend.append("price", formData.price);
     formDataToSend.append("category", formData.category);
+    formDataToSend.append("sub_category", formData.sub_category);
     formDataToSend.append("rating", formData.rating);
     formDataToSend.append("size", formData.size);
     formDataToSend.append("description", formData.description);
@@ -253,25 +257,32 @@ const ProductForm = () => {
                 <option value="Bath and body Works">Bath and body works</option>
               </select>
             </div>
-
             <div className="space-y-2">
-              <label htmlFor="size" className="block font-medium text-gray-700">
-                Size
+              <label
+                htmlFor="sub_category"
+                className="block font-medium text-gray-700"
+              >
+                Sub Category (optional)
               </label>
               <select
-                id="size"
-                value={formData.size}
+                id="sub_category"
+                value={formData.sub_category}
                 onChange={handleInputChange}
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
               >
-                <option value="">Select a size</option>
-                <option value="20ml">20ml</option>
-                <option value="250">250</option>
-                <option value="275">275</option>
-                <option value="295ml">295ml</option>
-                <option value="300ml">300ml</option>
+                <option value="">Select a sub-category</option>
+                <option value="Gift box">Gift Box</option>
+                <option value="Body care">Body Care</option>
+                <option value="Body&Hair Fragrance">
+                  Body & Hair Fragrance
+                </option>
+                <option value="Hand Care">Hand Care</option>
+                <option value="Home Fragrance">Home Fragrance</option>
               </select>
+              <p className="text-sm text-gray-500">
+                This sub category for bath and body works and rituals only
+              </p>
             </div>
           </div>
 
@@ -293,6 +304,25 @@ const ProductForm = () => {
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
               />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="size" className="block font-medium text-gray-700">
+                Size
+              </label>
+              <select
+                id="size"
+                value={formData.size}
+                onChange={handleInputChange}
+                required
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+              >
+                <option value="">Select a size</option>
+                <option value="20ml">20ml</option>
+                <option value="250">250</option>
+                <option value="275">275</option>
+                <option value="295ml">295ml</option>
+                <option value="300ml">300ml</option>
+              </select>
             </div>
 
             <div className="space-y-2">
