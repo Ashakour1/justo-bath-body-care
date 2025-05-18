@@ -5,7 +5,7 @@ import cloudinary from "../config/cloudinary.js";
 export const getProducts = asyncHandler(async (req, res) => {
   // const qisNew = req.query.new;
 
-  const { isNew, category } = req.query;
+  const { isNew, category, sub_category } = req.query;
 
   try {
     let products;
@@ -18,6 +18,12 @@ export const getProducts = asyncHandler(async (req, res) => {
       products = await prisma.product.findMany({
         where: {
           category,
+        },
+      });
+    } else if (sub_category) {
+      products = await prisma.product.findMany({
+        where: {
+          sub_category,
         },
       });
     } else {
@@ -53,6 +59,7 @@ export const createProduct = asyncHandler(async (req, res) => {
       description,
       price,
       category,
+      sub_category,
       rating,
       size,
       isNew,
@@ -108,6 +115,7 @@ export const createProduct = asyncHandler(async (req, res) => {
         description,
         price: parseFloat(price),
         category,
+        subCategory: sub_category,
         rating: parseFloat(rating),
         size,
         quantity: parseInt(quantity),
@@ -126,8 +134,17 @@ export const createProduct = asyncHandler(async (req, res) => {
 
 export const updateProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { name, description, price, category, rating, size, isNew, quantity } =
-    req.body;
+  const {
+    name,
+    description,
+    price,
+    category,
+    rating,
+    size,
+    isNew,
+    quantity,
+    sub_category,
+  } = req.body;
 
   try {
     const product = await prisma.product.findUnique({
@@ -165,6 +182,7 @@ export const updateProduct = asyncHandler(async (req, res) => {
         description,
         price: parseFloat(price),
         category,
+        subCategory: sub_category,
         rating: parseFloat(rating),
         size,
         quantity: parseInt(quantity),

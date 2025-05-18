@@ -31,6 +31,7 @@ model Product {
   description String
   price Float
   category String
+  sub_category String?
   rating Float
   quantity Int
   size String
