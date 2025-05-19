@@ -188,7 +188,7 @@ const ProductForm = () => {
         </button>
         <div className="space-y-2">
           <h1 className="text-2xl font-bold">
-            {id ? "Edit Product" : "Add New Product"}
+            {id ? "Update Product" : "Add New Product"}
           </h1>
           <p className="text-gray-600">
             {id
@@ -316,11 +316,17 @@ const ProductForm = () => {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
               >
                 <option value="">Select a size</option>
-                <option value="20ml">20ml</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="75">75</option>
+                <option value="100">100</option>
+                <option value="125">125</option>
+                <option value="150">150</option>
+                <option value="200">200</option>
                 <option value="250">250</option>
                 <option value="275">275</option>
-                <option value="295ml">295ml</option>
-                <option value="300ml">300ml</option>
+                <option value="295">295</option>
+                <option value="300">300</option>
               </select>
             </div>
 
