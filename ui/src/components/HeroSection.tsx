@@ -22,7 +22,7 @@ const HeroSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
               >
-                Reveal Your Natural Radiance
+                Naturally Beautiful, Naturally You
               </motion.h1>
               <motion.p
                 className="text-sm sm:text-base md:text-lg lg:text-xl  max-w-[600px] text-gray-600"
@@ -30,8 +30,8 @@ const HeroSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
               >
-                Scientifically formulated skincare that nourishes, protects, and
-                enhances your skin&apos;s natural beauty.
+                Discover the secret to radiant skin with our all-natural
+                skincare products. Embrace your beauty, naturally.
               </motion.p>
             </motion.div>
             <motion.div
@@ -113,7 +113,7 @@ const HeroSection = () => {
               transition={{ duration: 0.5 }}
             >
               <motion.img
-                src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=2070&auto=format&fit=crop"
+                src="/hero.png"
                 alt="Skincare products"
                 className="object-cover rounded-md w-full h-full"
                 // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

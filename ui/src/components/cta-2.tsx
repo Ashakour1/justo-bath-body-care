@@ -10,7 +10,7 @@ const CtaSection = () => {
           <div className="relative flex items-center justify-center">
             <div className="relative z-10 h-[500px] w-full">
               <img
-                src="/vc.jpg"
+                src="/advertisment.png"
                 alt="Woman with towel  holding hair serum"
                 className="rounded-lg object-cover  h-full w-full"
               />

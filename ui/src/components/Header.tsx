@@ -106,7 +106,7 @@ const Header = () => {
 
           {/* Logo */}
           <Link to="/" className="flex items-center" onClick={closeMobileMenu}>
-            <img src="/logo.png" className="w-32 h-auto" alt="Logo" />
+            <img src="/logo-2.png" className="w-14 h-auto" alt="Logo" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -171,7 +171,7 @@ const Header = () => {
                   <DropdownMenuContent>
                     <DropdownMenuItem asChild>
                       <Link
-                        to="/Shop/collection/Bath-and-body-Works/Body Care"
+                        to="/Shop/collection/Bath and body Works/Body Care"
                         onClick={closeMobileMenu}
                       >
                         Body Care
@@ -179,7 +179,7 @@ const Header = () => {
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
                       <Link
-                        to="/Shop/collection/Bath-and-body-Works/Gift box"
+                        to="/Shop/collection/Bath and body Works/Gift box"
                         onClick={closeMobileMenu}
                       >
                         Gift Box
@@ -187,7 +187,7 @@ const Header = () => {
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
                       <Link
-                        to="/Shop/collection/Bath-and-body-Works/Body & Hair Fragrance"
+                        to="/Shop/collection/Bath and body Works/Body & Hair Fragrance"
                         onClick={closeMobileMenu}
                       >
                         Body & Hair Fragrance
@@ -195,7 +195,7 @@ const Header = () => {
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
                       <Link
-                        to="/Shop/collection/Bath-and-body-Works/Hand Care"
+                        to="/Shop/collection/Bath and body Works/Hand Care"
                         onClick={closeMobileMenu}
                       >
                         Hand Care
@@ -411,7 +411,7 @@ const Header = () => {
                       </li>
                       <li>
                         <Link
-                          to="/Shop/collection/Bath-and-body-Works/Home Fragrance"
+                          to="/Shop/collection/Bath and body Works/Home Fragrance"
                           className="text-sm text-gray-600"
                           onClick={closeMobileMenu}
                         >
