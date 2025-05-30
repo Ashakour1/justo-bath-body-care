@@ -204,3 +204,34 @@ export const deleteProduct = asyncHandler(async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+
+/**
+ * @desc    Reorder products
+ * @route   PUT /api/products/reorder
+ * @access  Private/Admin
+ */
+export const reorderProducts = asyncHandler(async (req, res) => {
+  const { products } = req.body;
+
+  if (!products || !Array.isArray(products)) {
+    return res.status(400).json({ message: "Invalid request body" });
+  }
+
+  try {
+    // Use Prisma transaction to ensure all updates succeed or fail together
+    await prisma.$transaction(
+      products.map((product) =>
+        prisma.product.update({
+          where: { id: product.id },
+          data: { order: product.order },
+        })
+      )
+    );
+
+    res.status(200).json({ message: "Product order updated successfully" });
+  } catch (error) {
+    console.error("Reorder products error:", error);
+    res.status(500).json({ message: error.message });
+  }
+});

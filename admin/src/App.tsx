@@ -5,7 +5,7 @@ import Sidebar from "./components/Sidebar";
 // import Header from "./components/Header";
 import LoginPage from "./pages/LoginPage";
 import ProductForm from "./pages/Dashboard/products/add-product";
-import { ProductTable } from "./pages/Dashboard/ProductsPage";
+import ProductTable from "./pages/Dashboard/ProductsPage";
 import { OrderTable } from "./pages/Dashboard/orders/ordersTable";
 import { CustomerTable } from "./pages/Dashboard/customers/customerTable";
 import OrderForm from "./pages/Dashboard/orders/EditOrder";

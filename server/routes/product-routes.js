@@ -19,5 +19,6 @@ router.post("/", upload.single("image"), createProduct);
 
 router.put("/:id", upload.single("image"), updateProduct);
 router.delete("/:id", deleteProduct);
+router.put("/reorder", reorderProducts);
 
 export default router;
