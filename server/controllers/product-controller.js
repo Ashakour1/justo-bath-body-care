@@ -7,18 +7,20 @@ export const getProducts = asyncHandler(async (req, res) => {
   try {
     let products;
 
-    if (isNew) {
-      products = (await prisma.product.findMany()).sort((a, b) => {
-        return new Date(b.createdAt) - new Date(a.createdAt);
-      });
-    } else {
+  if (isNew) {
+    products = await prisma.product.findMany({
+      orderBy: { order: "asc" }
+    });
+  } else {
       const filters = {};
       if (category)
         filters.category = { equals: category, mode: "insensitive" };
       if (sub_category)
         filters.sub_category = { equals: sub_category, mode: "insensitive" };
 
-      products = await prisma.product.findMany({ where: filters });
+      products = await prisma.product.findMany({ where: filters,
+        orderBy: { order: "asc" }
+      });
     }
 
     res.status(200).json(products);
