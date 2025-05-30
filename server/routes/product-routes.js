@@ -14,6 +14,8 @@ const router = express.Router();
 
 router.get("/", getProducts);
 
+router.put("/reorder", reorderProducts);
+
 router.get("/:id", getProduct);
 
 router.post("/", upload.single("image"), createProduct);
