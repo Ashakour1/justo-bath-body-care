@@ -51,16 +51,7 @@ const Footer = () => {
         </div>
         <div className="mt-8 border-t pt-6">
           <p className="text-center text-sm D4AF37">
-            &copy; 2023 Justo Cosmetic. All rights reserved.
-          </p>
-          <p className="text-center text-sm D4AF37">
-            Developed by{" "}
-            <a
-              href="https://reliatrusty.com/"
-              className="font-semibold hover:underline"
-            >
-              Relia trusty
-            </a>
+            &copy; 2023 Justo Cosmetics. All rights reserved.
           </p>
         </div>
       </div>
