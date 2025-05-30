@@ -6,6 +6,7 @@ import {
   getProduct,
   updateProduct,
   deleteProduct,
+  reorderProducts,
 } from "../controllers/product-controller.js";
 import upload from "../middlewares/upload.js";
 
