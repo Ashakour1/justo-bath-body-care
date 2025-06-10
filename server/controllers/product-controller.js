@@ -100,6 +100,7 @@ export const createProduct = asyncHandler(async (req, res) => {
       result = await cloudinary.uploader.upload(encodedImage, {
         resource_type: "image",
         transformation: [{ width: 400, height: 400, crop: "limit" }],
+        quality: auto
       });
     }
 
