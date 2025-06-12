@@ -102,6 +102,7 @@ export const createProduct = asyncHandler(async (req, res) => {
         resource_type: "image",
         quality: "auto:best", // Cloudinary will pick best possible quality
         fetch_format: "auto", // Cloudinary will optimize format (WebP, AVIF)
+        folder: "products", // Optional: specify a folder in Cloudinary
       });
     }
 
