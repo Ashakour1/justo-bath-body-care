@@ -7,19 +7,20 @@ export const getProducts = asyncHandler(async (req, res) => {
   try {
     let products;
 
-  if (isNew) {
-    products = await prisma.product.findMany({
-      orderBy: { order: "asc" }
-    });
-  } else {
+    if (isNew) {
+      products = await prisma.product.findMany({
+        orderBy: { order: "asc" },
+      });
+    } else {
       const filters = {};
       if (category)
         filters.category = { equals: category, mode: "insensitive" };
       if (sub_category)
         filters.sub_category = { equals: sub_category, mode: "insensitive" };
 
-      products = await prisma.product.findMany({ where: filters,
-        orderBy: { order: "asc" }
+      products = await prisma.product.findMany({
+        where: filters,
+        orderBy: { order: "asc" },
       });
     }
 
@@ -99,8 +100,9 @@ export const createProduct = asyncHandler(async (req, res) => {
 
       result = await cloudinary.uploader.upload(encodedImage, {
         resource_type: "image",
+        quality: "auto:best", // Cloudinary will pick best possible quality
+        fetch_format: "auto", // Cloudinary will optimize format (WebP, AVIF)
         transformation: [{ width: 400, height: 400, crop: "limit" }],
-        quality: auto
       });
     }
 
@@ -207,7 +209,6 @@ export const deleteProduct = asyncHandler(async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-
 
 /**
  * @desc    Reorder products
