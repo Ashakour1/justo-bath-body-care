@@ -110,10 +110,9 @@ const ProductDetail = () => {
     );
   }
 
-
   useEffect(() => {
-      window.scrollTo(0, 0); // Scroll to top when component mounts
-    }, []);
+    window.scrollTo(0, 0); // Scroll to top when component mounts
+  }, []);
 
   return (
     <div className="container mx-auto px-4 py-6 sm:py-8 md:py-12 max-w-6xl min-h-screen">
@@ -164,7 +163,9 @@ const ProductDetail = () => {
             <img
               src={product.image || "/placeholder.svg?height=700&width=600"}
               alt={product.name}
-              className="w-full h-full object-cover"
+              className="object-cover w-full h-full transition-transform duration-300 ease-in-out"
+              loading="lazy"
+              decoding="async"
             />
           )}
         </div>

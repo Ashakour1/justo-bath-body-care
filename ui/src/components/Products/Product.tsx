@@ -63,7 +63,9 @@ const Product = ({ product }: ProductProps) => {
           onClick={() => navigate(`/product/${product.id}`)}
           src={product.image || "/placeholder.svg"}
           alt={product.name}
-          className="object-cover w-full h-[380px] transition-transform duration-700 group-hover:scale-105"
+          className="object-cover w-full h-[380px] transition-transform duration-500 group-hover:scale-105 rounded"
+          loading="lazy"
+          decoding="async"
         />
       </div>
 
